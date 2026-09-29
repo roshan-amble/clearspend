@@ -1,0 +1,28 @@
+{
+  "name": "clearspend",
+  "private": true,
+  "type": "module",
+  "description": "Sourcing intelligence for a nonprofit food program expansion, on Palantir Foundry and AIP.",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "typecheck": "tsc -p packages/domain && tsc -p scripts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "fixtures:market": "tsx scripts/build-market-prices.ts",
+    "fixtures:validate": "vitest run scripts",
+    "ontology:payloads": "tsx scripts/ontology-payloads.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.4",
+    "csv-parse": "^5.6.0",
+    "tsx": "^4.23.15",
+    "typescript": "~5.6.3",
+    "vitest": "^3.0.5"
+  }
+}
