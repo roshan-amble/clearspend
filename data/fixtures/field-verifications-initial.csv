@@ -1,0 +1,4 @@
+source_system,verification_id,supplier_id,ration_version,visited_at,verifier,result,moisture_permille,confirmed_capacity_kg_per_month,notes
+harbor-field,FV-A-2026-02,SUP-A,1,2026-02-15T08:00:00Z,field-verifier,PASS,129,40000,Existing import supplier. Warehouse and packaging checked.
+harbor-field,FV-B-2026-02,SUP-B,1,2026-02-16T08:00:00Z,field-verifier,PASS,117,5000,Existing bean supplier.
+harbor-field,FV-O-2026-02,SUP-O,1,2026-02-17T08:00:00Z,field-verifier,PASS,,2000,Existing oil supplier.

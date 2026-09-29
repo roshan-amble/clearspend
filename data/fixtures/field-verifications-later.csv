@@ -1,0 +1,3 @@
+source_system,verification_id,supplier_id,ration_version,visited_at,verifier,result,moisture_permille,confirmed_capacity_kg_per_month,notes
+harbor-field,FV-L1-2026-09,SUP-L1,1,2026-09-10T08:00:00Z,field-verifier,PASS,132,11000,Cooperative storage is dry and raised. Lab certificate confirmed on site.
+harbor-field,FV-L4-2026-09,SUP-L4,1,2026-09-11T08:00:00Z,field-verifier,FAIL,128,15000,Storage in Tsihombe does not protect the rice against pests.

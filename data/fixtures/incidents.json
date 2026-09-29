@@ -1,0 +1,38 @@
+[
+  {
+    "source_system": "harbor-erp",
+    "incident_id": "INC-A3",
+    "order_id": "PO-A3",
+    "reported_at": "2026-05-09T10:00:00Z",
+    "affected_quantity_kg": 10000,
+    "documents": [
+      {
+        "document_id": "DOC-A3-LAB",
+        "author_role": "receiving_lab",
+        "recorded_at": "2026-05-09T09:30:00Z",
+        "text": "Receipt test for PO-A3: moisture 16.0% against a spec maximum of 14.0%. The batch is rejected at receipt and returned to the supplier."
+      }
+    ]
+  },
+  {
+    "source_system": "harbor-erp",
+    "incident_id": "INC-A4",
+    "order_id": "PO-A4",
+    "reported_at": "2026-06-18T10:00:00Z",
+    "affected_quantity_kg": 2000,
+    "documents": [
+      {
+        "document_id": "DOC-A4-WAREHOUSE",
+        "author_role": "warehouse_manager",
+        "recorded_at": "2026-06-16T09:00:00Z",
+        "text": "Bags from PO-A4 arrived damp at the school cluster warehouse, and the weave of many bags was weak. About 2,000 kg show mould and cannot be used. In my view the supplier's packaging is not fit for the rainy season."
+      },
+      {
+        "document_id": "DOC-A4-TRANSPORT",
+        "author_role": "transport_contractor",
+        "recorded_at": "2026-06-15T18:00:00Z",
+        "text": "Program truck TR-07 loaded PO-A4 at the Ambovombe depot on 2026-06-10, after the handover. Flooding on the road held the truck for 4 days in heavy rain, and the tarpaulin tore on day 2. The truck reached the school cluster warehouse on 2026-06-15."
+      }
+    ]
+  }
+]

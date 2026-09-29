@@ -1,0 +1,10 @@
+source_system,supplier_id,name,route,country
+harbor-erp,SUP-A,Coastal Grain Traders (fictional),IMPORT,MG
+harbor-erp,SUP-B,Ambovombe Pulses Co. (fictional),LOCAL,MG
+harbor-erp,SUP-O,Southern Oils Ltd (fictional),IMPORT,MG
+harbor-leads,SUP-L1,Cooperative Tsimoka Riz (fictional),LOCAL,MG
+harbor-leads,SUP-L2,Androy Grain Supply (fictional),LOCAL,MG
+harbor-leads,SUP-L3,Moulin Fanantenana (fictional),LOCAL,MG
+harbor-leads,SUP-L4,Sud Harvest Traders (fictional),LOCAL,MG
+harbor-leads,SUP-L5,Rice supplier (fictional),LOCAL,MG
+harbor-leads,SUP-L6,Grand Sud Agro Holdings (fictional),LOCAL,MG
