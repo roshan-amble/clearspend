@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { parseDecimalScaled } from "./decimal.js";
-import { add, compare, div, formatFixed, frac, roundHalfEven, sub } from "./fraction.js";
+import { add, compare, div, exactText, formatFixed, frac, parseExactText, roundHalfEven, sub } from "./fraction.js";
 
 describe("Fraction", () => {
   it("reduces and keeps the denominator positive", () => {
@@ -51,5 +51,13 @@ describe("parseDecimalScaled", () => {
     for (const text of ["", "-1", "1e3", "0x10", "1,5", "."]) {
       expect(() => parseDecimalScaled(text, 6)).toThrowError(/not a non-negative decimal/);
     }
+  });
+});
+
+describe("exact text for storage", () => {
+  it("writes numerator/denominator and reads back the same reduced value", () => {
+    expect(exactText(frac(44n, 1000n))).toBe("11/250");
+    expect(parseExactText("11/250")).toEqual(frac(11n, 250n));
+    expect(() => parseExactText("0.044")).toThrowError(/not an exact fraction/);
   });
 });

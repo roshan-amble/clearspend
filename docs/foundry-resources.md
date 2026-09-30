@@ -7,7 +7,15 @@ Updated: 2026-09-28. Source for the object types: `scripts/lib/ontology.ts` and 
 |---|---|
 | Project `ClearSpend`, `/roshan-amble-7809d6/ClearSpend` | `ri.compass.main.folder.dc56a933-d5b6-4da7-a9c8-739ccf32a1a8` |
 | Ontology `roshan-amble Ontology` | `ri.ontology.main.ontology.17eb06bc-5728-411d-bcd2-772e1b451f20` |
-| Global branch `clearspend-phase-2-ontology` | `ri.branch..branch.353eee45-0ec2-4b90-b7ee-99abb1bd149a` |
+| Functions repository `clearspend-functions`, cloned to `~/Developer/clearspend-functions` | `ri.stemma.main.repository.9d8e3420-9bb6-44f3-a13f-1ad37559e532` |
+| Function `csImportEvidenceBatch` 0.1.0 (commit `00765af`, tag `0.1.0`) | `ri.function-registry.main.function.ee0f2cb0-ca59-4196-bf15-7aedd68d8b75` |
+| Function `csConfirmIncidentCause` 0.1.0 | `ri.function-registry.main.function.2f9345e4-9bbe-4e64-b3f7-75ff93c6f2b9` |
+| Global branch `clearspend-phase-2-actions` | `ri.branch..branch.40a31f42-c096-45f0-b64a-dc610e77c061` |
+| Proposal to merge the Action types | `ri.branch..proposal.a95473d5-2a0e-4b6b-96a6-f1c2a85c9559` |
+| Action type `cs-import-evidence-batch` (on that branch) | `ri.actions.main.action-type.0e5f5833-243c-4cf2-975f-73667fe3e05d` |
+| Action type `cs-confirm-incident-cause` (on that branch) | `ri.actions.main.action-type.ee11ca2a-c87e-4f67-977f-05d7b5f7d0d6` |
+| Global branch `clearspend-phase-2-ontology` (merged) | `ri.branch..branch.353eee45-0ec2-4b90-b7ee-99abb1bd149a` |
+| Proposal to merge it to Main (opened 2026-09-28) | `ri.branch..proposal.7d10319c-b382-42f3-b4b9-7b4fb00b2575` |
 
 ## Object types, on the branch only
 
@@ -33,3 +41,22 @@ Every dataset except `cs_market_price` is empty: only Actions create those objec
 | `CsDecision` | `fvhlhlrq.cs-decision` | `ri.ontology.main.object-type.ae54f2e8-d4b5-48a8-8009-4f0257ef348e` | `ri.foundry.main.dataset.1172532b-ed5c-4e90-93ee-1e89a03803e1` |
 
 `cs_market_price` holds 1,585 rows from `data/public/androy-market-prices.csv`, keyed on `price_id`.
+
+## Link types, on the branch only
+
+All one-to-many. Source: `LINK_TYPES` in `scripts/lib/ontology.ts`.
+
+| Link type ID | RID |
+|---|---|
+| `fvhlhlrq.cs-expansion-commodities` | `ri.ontology.main.relation.1ead1eff-8124-4bf1-8401-a9eac68034fa` |
+| `fvhlhlrq.cs-expansion-purchase-orders` | `ri.ontology.main.relation.42bfdc31-9c31-4f0a-9ea7-dd7f06143c9a` |
+| `fvhlhlrq.cs-expansion-cost-snapshots` | `ri.ontology.main.relation.bc5d9bf1-5027-4340-aefb-40f1d9d4870e` |
+| `fvhlhlrq.cs-expansion-decisions` | `ri.ontology.main.relation.05fc8aec-2010-4268-b958-fd9c27b9bf5b` |
+| `fvhlhlrq.cs-expansion-import-batches` | `ri.ontology.main.relation.de7f533d-a57e-478b-b965-ee2d78685581` |
+| `fvhlhlrq.cs-expansion-cause-proposals` | `ri.ontology.main.relation.4a198998-15a6-42c9-b0f0-e3af5247de27` |
+| `fvhlhlrq.cs-supplier-purchase-orders` | `ri.ontology.main.relation.cfba6cf6-2d9e-454a-a3cf-dff2e3a3f214` |
+| `fvhlhlrq.cs-supplier-profile-versions` | `ri.ontology.main.relation.52335a9a-4401-4e93-a1cf-f33167564947` |
+| `fvhlhlrq.cs-supplier-cost-lines` | `ri.ontology.main.relation.49ae56eb-2997-4380-88bd-0d30a6300482` |
+| `fvhlhlrq.cs-snapshot-cost-lines` | `ri.ontology.main.relation.28218d4d-6964-4f59-8cf6-7a1ba55e0fde` |
+| `fvhlhlrq.cs-incident-cause-proposals` | `ri.ontology.main.relation.5e097fe7-7b3b-4aee-81a3-24d21569de77` |
+| `fvhlhlrq.cs-proposal-decisions` | `ri.ontology.main.relation.0620a540-cbb2-4c64-a657-5336f6ba9f82` |

@@ -132,7 +132,25 @@ The options as Roshan saw them:
 | `CsImportBatch` | key = `expansionId:fileDigest`, `evidenceRevision` it created. The expansion is in the key, so a fresh demo expansion can import the same file. | I1, D6.7 |
 | `CsCostSnapshot` | `marketDataAsOf`: the latest market month used | I8 |
 
-## Smallest real test (not run)
+## Test on the real Action (Roshan, 2026-09-29)
+
+Roshan chose to verify the guard on the real cause confirmation Action instead of a throwaway `CsProbe`, because
+each Action type change needs a proposal that he merges. The test runs in a separate test expansion, for example
+`EXP-ANDROY-2026-T1`, so the demo expansion's history stays clean: 2 parallel confirmations with the same expected
+counters (pass: 1 success and 1 `STALE_COMMAND` or conflict), then a retry with the same `requestId` (pass: `REPLAYED`).
+
+### Result, 2026-09-29 (`npm run test:d6 -- --namespace t1`)
+
+- 7 rounds of 2 parallel confirmations: every round exactly 1 success, and the other failed with HTTP 409
+  `CONFLICT` (`ObjectChanged` or `ObjectsModifiedConcurrently`). The counters moved by exactly 1 each round.
+- A retry of a committed request: `REPLAYED`, nothing changed. The same request ID with other content:
+  `REQUEST_ID_REUSED`. A new request from an older view: `STALE_COMMAND`, nothing changed.
+- The platform did not re-run the loser, so a parallel loser sees a 409 conflict, not `STALE_COMMAND`. The client
+  table row "Conflict after the platform's 5 attempts" is the case that happens: the app shows "Busy. Try again."
+- After the confirmation, `npm run verify:snapshot` found Foundry's snapshot equal to the local domain result:
+  rice 5.5 cents for each meal on the supplier view, 5.7 on the route view.
+
+## Smallest real test (not run, replaced by the section above)
 
 1. A throwaway type `CsProbe` with 1 object and a `count`, and a function-backed Action `csProbeBump(expected)`
    that throws `STALE_COMMAND` when `count` differs from `expected`, and else writes `count + 1`.
@@ -150,8 +168,9 @@ The options as Roshan saw them:
 
 - A rules change, a new copy of `packages/domain`, creates no snapshot by itself. Proposal: the deploy step
   applies a recompute Action that raises the revision. D8 decides.
-- If a function cannot read the user ID, an Action rule maps "current user" to `actorUserId`. The browser never
-  sends it.
+- Decided (Roshan, 2026-09-29): the function reads `actorUserId` from the platform with
+  `Admin.Users.getCurrent(client)`. The caller cannot send it. If the platform denies that call, the fallback is a
+  "current user" Action parameter, after a test proves that an API caller cannot override it.
 
 ## Help received
 

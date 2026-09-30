@@ -471,3 +471,32 @@ export const OBJECT_TYPES: readonly ObjectTypeSpec[] = [
     ],
   },
 ];
+
+/**
+ * A one-to-many Foundry link type: `foreignKey` on the `many` type holds the primary key of the `one` type.
+ * Only targets without versions, or a specific version, can be the `one` side (see the file header).
+ */
+export interface LinkTypeSpec {
+  readonly id: string;
+  readonly one: string;
+  readonly many: string;
+  readonly foreignKey: string;
+  /** API names as seen from each side. */
+  readonly toMany: string;
+  readonly toOne: string;
+}
+
+export const LINK_TYPES: readonly LinkTypeSpec[] = [
+  { id: "cs-expansion-commodities", one: "CsExpansion", many: "CsExpansionCommodity", foreignKey: "expansion_id", toMany: "commodities", toOne: "expansion" },
+  { id: "cs-expansion-purchase-orders", one: "CsExpansion", many: "CsPurchaseOrder", foreignKey: "expansion_id", toMany: "purchaseOrders", toOne: "expansion" },
+  { id: "cs-expansion-cost-snapshots", one: "CsExpansion", many: "CsCostSnapshot", foreignKey: "expansion_id", toMany: "costSnapshots", toOne: "expansion" },
+  { id: "cs-expansion-decisions", one: "CsExpansion", many: "CsDecision", foreignKey: "expansion_id", toMany: "decisions", toOne: "expansion" },
+  { id: "cs-expansion-import-batches", one: "CsExpansion", many: "CsImportBatch", foreignKey: "expansion_id", toMany: "importBatches", toOne: "expansion" },
+  { id: "cs-expansion-cause-proposals", one: "CsExpansion", many: "CsCauseProposal", foreignKey: "expansion_id", toMany: "causeProposals", toOne: "expansion" },
+  { id: "cs-supplier-purchase-orders", one: "CsSupplier", many: "CsPurchaseOrder", foreignKey: "supplier_logical_id", toMany: "purchaseOrders", toOne: "supplier" },
+  { id: "cs-supplier-profile-versions", one: "CsSupplier", many: "CsSupplierProfileVersion", foreignKey: "supplier_logical_id", toMany: "profileVersions", toOne: "supplier" },
+  { id: "cs-supplier-cost-lines", one: "CsSupplier", many: "CsCostLine", foreignKey: "supplier_logical_id", toMany: "costLines", toOne: "supplier" },
+  { id: "cs-snapshot-cost-lines", one: "CsCostSnapshot", many: "CsCostLine", foreignKey: "snapshot_id", toMany: "costLines", toOne: "snapshot" },
+  { id: "cs-incident-cause-proposals", one: "CsIncident", many: "CsCauseProposal", foreignKey: "incident_version_id", toMany: "causeProposals", toOne: "incident" },
+  { id: "cs-proposal-decisions", one: "CsCauseProposal", many: "CsDecision", foreignKey: "answers_proposal_id", toMany: "answeringDecisions", toOne: "answersProposal" },
+];

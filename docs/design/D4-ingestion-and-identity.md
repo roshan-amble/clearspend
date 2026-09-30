@@ -10,7 +10,14 @@ Requirements addressed: D1, D2 decision 6, brief section 7 source rules.
 |---|---|---|
 | Public market prices | The script uploads a filtered dataset: Androy, the D11 commodity series, the last 24 months. `CsMarketPrice` reads it directly. | Reference data, not spend evidence. It has no revision effect. |
 | Evidence: suppliers, profiles, purchases, payments, invoices, deliveries, incidents | The script validates each file, then applies the Action `csImportEvidenceBatch` once for each file, as a member of the evidence importer group only (D9.2) | The Action applies the identity rules on the server, and changes the expansion's revision once for each batch. |
+| Setup: `expansion.csv`, `expansion-commodities.csv` | The same Action `csImportEvidenceBatch`, with the file kinds `expansion` and `expansion-commodities`. The first batch creates the `CsExpansion` anchor (Roshan, 2026-09-29). | 1 import path and 1 permission for all imported data. |
 | Field verifications | The field verifier records each one through the Action `csRecordFieldVerification`. The demo script can apply the same Action for the later fixture. | It is a person's observation, so it has an actor. |
+
+## Namespaces (Roshan, 2026-09-29)
+
+A demo or test run can import the same fixtures again into a fresh namespace. The script prefixes every
+`source_system` and the expansion ID, for example `t1/harbor-erp` and `EXP-ANDROY-2026-T1`. Logical IDs never
+collide with another namespace. Suppliers are stored once for each namespace.
 
 ## Identity rules
 

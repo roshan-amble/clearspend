@@ -18,7 +18,7 @@ Context and constraints: [platform-facts.md](platform-facts.md).
 | 7 | Outreach email | A Foundry notification to Roshan's own Foundry user, as the test inbox | No outside system. It cannot reach a real business. |
 | 8 | Repository | npm workspaces | The same tool as Opstastic. |
 | 9 | AI jobs | AIP Logic functions | The same kind as the smoke test. |
-| 10 | Domain code in Functions | A Foundry TypeScript v2 functions repository. A script copies `packages/domain/src` into it as a generated folder with its SHA-256 digest. A test in this repository fails if the copy differs from the source. Object types are created with Palantir MCP on a Foundry branch. | TypeScript v2 functions are generally available. SuperRepo is beta, its CLI is not notarized, and `foundry login` stores credentials on disk. A published npm package needs a publish for each rule change. The copy is generated, so the brief's rule against 2 hand-copied rules holds. |
+| 10 | Domain code in Functions | A Foundry TypeScript v2 functions repository. A script copies `packages/domain/src` into its `src/domain/` folder with its SHA-256 digest. (Not `src/generated/`: the template's `.gitignore` excludes it.) A test in this repository fails if the copy differs from the source. Object types are created with Palantir MCP on a Foundry branch. | TypeScript v2 functions are generally available. SuperRepo is beta, its CLI is not notarized, and `foundry login` stores credentials on disk. A published npm package needs a publish for each rule change. The copy is generated, so the brief's rule against 2 hand-copied rules holds. |
 
 ## Components
 

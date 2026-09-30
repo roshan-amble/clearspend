@@ -62,6 +62,8 @@ Access is the overlap of 3 layers (Verified), plus 1 check for each Action.
 | Scripts and Palantir MCP | A user token in `FOUNDRY_TOKEN` | Never in a file, a log, a screenshot, or the video |
 | npm registry for the generated SDK | `.npmrc` reads `${FOUNDRY_TOKEN}` | Verified |
 | Foundry CLI | Not used (decision of 2026-09-28) | `foundry login` stores credentials on disk |
+| Palantir MCP | Writes the user token to `~/.palantir/mcp-config.json` (mode 600) when it starts | **The 1 recorded exception** to "tokens stay in environment variables" (Roshan, 2026-09-29). Revoke the token when the project ends. It expires on 2026-10-16. |
+| `clearspend-functions` clone | Git helper reads `FOUNDRY_TOKEN` at run time; no token in `.git/config` or the keychain | Checked after each tool run |
 
 ## Data that leaves the governed path in v1
 

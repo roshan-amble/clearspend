@@ -38,6 +38,18 @@ describe("reconcilePurchase", () => {
     expect(codes(conflicted)).toEqual(["CONFLICTING_EVIDENCE"]);
   });
 
+  it("treats a changed order or invoice version the same way (D4)", () => {
+    const base = ricePurchase("PO-3B", 1_000, 80);
+    const conflicted: PurchaseEvidence = {
+      ...base,
+      order: { ...base.order, hasConflictingVersion: true },
+      invoices: base.invoices.map((invoice) => ({ ...invoice, hasConflictingVersion: true })),
+    };
+
+    expect(reconcilePurchase(conflicted).status).toBe("INCOMPLETE");
+    expect(codes(conflicted)).toEqual(["CONFLICTING_EVIDENCE", "CONFLICTING_EVIDENCE"]);
+  });
+
   it("marks another currency UNSUPPORTED, and keeps every other finding too", () => {
     const evidence = ricePurchase("PO-4", 1_000, 80, { currency: "MGA", withInvoice: false });
     const result = reconcilePurchase(evidence);

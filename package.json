@@ -16,7 +16,13 @@
     "test:watch": "vitest",
     "fixtures:market": "tsx scripts/build-market-prices.ts",
     "fixtures:validate": "vitest run scripts",
-    "ontology:payloads": "tsx scripts/ontology-payloads.ts"
+    "ontology:payloads": "tsx scripts/ontology-payloads.ts",
+    "domain:sync": "tsx scripts/sync-domain.ts",
+    "functions:harness": "bash scripts/functions-harness.sh",
+    "functions:typecheck": ".functions-harness/node_modules/.bin/tsc -p ../clearspend-functions/typescript-functions/src/tsconfig.json --noEmit",
+    "import": "tsx scripts/import.ts",
+    "verify:snapshot": "tsx scripts/verify-snapshot.ts",
+    "test:d6": "tsx scripts/d6-guard-test.ts"
   },
   "devDependencies": {
     "@types/node": "^22.20.4",

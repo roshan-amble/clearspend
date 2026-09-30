@@ -18,6 +18,19 @@ Claude drafted D6 and D9 with options and a recommended default. The drafts foun
 Claude's change beyond the drafts: the `CsImportBatch` key is `expansionId:fileDigest`, not `fileDigest`, so a
 fresh demo expansion can import the same file.
 
-Roshan approved D6 and D9 on 2026-09-28. The Phase 2 design gate before any Action is open.
+Roshan approved D6 and D9 on 2026-09-28.
+
+## 2026-09-29: token file and function builds
+
+| # | Question | Roshan's answer | Changed |
+|---|---|---|---|
+| 1 | Palantir MCP stores the token in `~/.palantir/mcp-config.json`. Accept, delete each session, or stop using the MCP? | A: accept as the 1 recorded exception, and revoke the token when the project ends | D9 "Tokens" |
+| 3 | How to verify the D6 guard, given that each Action type change needs a merged proposal? | Test the real cause confirmation Action in a separate test expansion. No throwaway `CsProbe`. | D6 |
+| 4 | D4 has no path for `expansion.csv` and `expansion-commodities.csv`. | The same import Action, with 2 more file kinds | D4 |
+| 5 | How to keep test data apart from the demo? | The script prefixes every `source_system` and the expansion ID | D4 "Namespaces" |
+| 6 | Where does `actorUserId` come from? | The function asks the platform (`Admin.Users.getCurrent`). Fallback: a "current user" parameter, after an override test | D6 open questions |
+| 7 | Set the D9 group permissions before or after the first test import? | After: test with the default "organization" permission, then set the groups before the D9.3 denial proof | progress |
+| 2 | `rune` fails locally. How to compile and test functions? | A: Claude pushes to `clearspend-functions`, and Foundry's checks compile and test. Roshan runs `rune` in the in-platform VS Code only for a live preview. | progress |
+ The Phase 2 design gate before any Action is open.
 
 Roshan's notes on gaps 2, 3a, 3b, and 4 arrived cut off. The "Roshan's answer" column shows Claude's reading of them.

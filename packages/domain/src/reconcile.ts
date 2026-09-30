@@ -29,6 +29,8 @@ export interface OrderRecord {
   readonly unitPriceCentsPer1000: number;
   readonly totalCents: number;
   readonly currency: Currency;
+  /** True when another version of the same logical order has different content (D4). */
+  readonly hasConflictingVersion?: boolean;
 }
 
 export interface PaymentRecord {
@@ -45,6 +47,8 @@ export interface InvoiceRecord {
   readonly quantity: number;
   readonly totalCents: number;
   readonly currency: Currency;
+  /** True when another version of the same logical invoice has different content (D4). */
+  readonly hasConflictingVersion?: boolean;
 }
 
 export interface DeliveryRecord {
@@ -133,6 +137,16 @@ function paymentFindings(evidence: PurchaseEvidence): Finding[] {
   return findings;
 }
 
+/** D4: a changed order or invoice is a conflict. The purchase cannot reconcile until a person resolves it. */
+function versionConflictFindings(evidence: PurchaseEvidence): Finding[] {
+  const records = [evidence.order, ...evidence.invoices].filter((record) => record.hasConflictingVersion === true);
+  return records.map((record) => ({
+    code: "CONFLICTING_EVIDENCE" as const,
+    evidenceIds: [record.id],
+    detail: "Another version of this record has different content. A person must resolve it (D4).",
+  }));
+}
+
 function invoiceFindings(evidence: PurchaseEvidence): Finding[] {
   const { order, invoices, payments } = evidence;
   if (invoices.length === 0) {
@@ -209,6 +223,7 @@ export function reconcilePurchase(evidence: PurchaseEvidence): ReconciliationRes
     ...currencyFindings(evidence),
     ...orderFindings(evidence.order),
     ...paymentFindings(evidence),
+    ...versionConflictFindings(evidence),
     ...invoiceFindings(evidence),
     ...deliveryFindings(evidence),
   ];

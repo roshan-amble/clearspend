@@ -30,7 +30,8 @@ export function classifyByRule(deliveries: readonly { readonly acceptance: Accep
   return deliveries.some((delivery) => delivery.acceptance === "FAIL") ? "SUPPLIER" : null;
 }
 
-function currentConfirmation(confirmations: readonly CauseConfirmation[]): CauseConfirmation | null {
+/** D5: the confirmation that no later confirmation supersedes, the latest first. Null when there is none. */
+export function currentConfirmation(confirmations: readonly CauseConfirmation[]): CauseConfirmation | null {
   const superseded = new Set(
     confirmations.flatMap((confirmation) =>
       confirmation.supersedesDecisionId === undefined ? [] : [confirmation.supersedesDecisionId],

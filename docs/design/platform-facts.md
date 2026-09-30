@@ -31,7 +31,7 @@ The code is in `~/Developer/osdk-sandbox/todo-aip-app`. It is not part of ClearS
 | A write through an Action is visible after a page reload. | Verified | D6 |
 | With Object Storage V2, an Action loads each object at 1 version for the whole apply. It checks versions only on the objects that it uses to generate edits. | Documented | D6 |
 | A conflict is checked per object, not per property. A concurrent edit to any property of the same object can fail the Action with a StaleObject conflict. | Documented | D6, D8 |
-| Action isolation and conflict behavior on this enrollment. | Not tested | D6 |
+| Action isolation and conflict behavior on this enrollment: of 2 parallel applies of 1 function-backed Action that both write `CsExpansion`, exactly 1 commits and the other fails with HTTP 409 `CONFLICT`, error name `ObjectChanged` or `ObjectsModifiedConcurrently`. 7 of 7 rounds on 2026-09-29. The platform did not re-run the loser into the function's own guard. | Verified | D6, D8 |
 | An Action notification goes only to Foundry users. A recipient must be a Foundry user ID. A plain email address receives nothing. | Documented | D2, D6 |
 | A webhook can call a system outside Foundry, for example an email service. A side-effect webhook runs after the edits are saved, best-effort, in no fixed order. | Documented | D2, D6, D8 |
 | Webhooks need an external source to be configured. Availability on the dev tier is not tested. | Not tested | D2 |
@@ -128,6 +128,26 @@ it. Calibrating the synthetic prices is a D11 decision for Roshan.
 | The CLI binary is ad-hoc signed, with no Team ID. macOS Gatekeeper (`spctl`) rejects it. It runs only because `curl` sets no quarantine flag. | Verified | D2 |
 | `foundry login` stores the credentials that every later CLI command uses. With `FOUNDRY_TOKEN` and `--foundry-url` it signs in without prompts. Where it stores them is not documented. | Documented | D2 |
 | A SuperRepo deploys as a Marketplace product with `foundry deploy` and an `env.yml` file. | Documented | D2 |
+| Foundry adds the prefix `fvhlhlrq.` to every object type ID and link type ID that Palantir MCP creates on this enrollment. | Verified | D3 |
+| The Ontology SDK is not branchable. An OSDK app sees only types on Main. | Documented | D2, D3 |
+| TypeScript v2 functions work on a global branch only with a local Ontology SDK and the `typescript-functions` template 0.1299.0 or later. Branch versions are "Branched pre-release", and function-backed Actions on a branch write only to the branch. | Documented | D2, D6 |
+| A functions repository is created in the platform UI: project, "+ New > Repository", TypeScript v2 functions template. Palantir MCP has no tool for it. | Documented | D2 |
+| **Palantir MCP `clone_code_repository_locally` writes the user token into the remote URL in `.git/config`, and the macOS keychain helper saves a copy.** Fix used on 2026-09-28: a remote URL without credentials, the local helper reset, and a helper that reads `FOUNDRY_TOKEN` at run time (`username=token`). The keychain copy was deleted. `git ls-remote` then worked, and nothing was stored. | Verified | D9 |
+| `clearspend-functions` uses template `typescript-functions` 0.1354.0 with a local SDK (`useSdkSidebar: false`). Its `.gitignore` excludes `**/src/generated/` and the `rune` binary. | Verified | D2 |
+| Resource imports live in `typescript-functions/resources.json`. The template tool `rune` (0.98.0, from the enrollment's artifacts) checks it, generates the local SDK, also for a global branch, and runs functions. Its installer reads `FOUNDRY_TOKEN` and `FOUNDRY_HOSTNAME` from the environment. | Documented (template AGENTS.md) | D2 |
+| The `rune` 0.98.0 binary is ad-hoc signed, with no Team ID. Gatekeeper rejects it, like the Foundry CLI. | Verified | D2 |
+| `./rune resources --add` fails on this machine with "Invalid bearer token for ontology_metadata". Tried: `FOUNDRY_TOKEN` with `FOUNDRY_HOSTNAME`, the remote URL through git environment config, and `USER_TOKEN_FILENAME` through a pipe. The token is a normal user token (no scope claim, expires 2026-10-16), and Palantir MCP works with it. It still fails after Roshan created the SDK in the Resource imports panel, so a missing first SDK was not the cause. | Verified failure, cause not known | D2 |
+| The Resource imports panel of the in-platform VS Code imported the 15 `Cs` object types, and it added all 12 link types by itself. The first SDK is `@ontology/sdk`, generated into `typescript-functions/.sdk` (git-ignored). Commit `3bf5a9d`. | Verified | D2 |
+| **Palantir MCP stores the user token in `~/.palantir/mcp-config.json`** (mode 600), written when the server starts. | Verified | D9 |
+| Foundry's checks on `clearspend-functions` compiled the domain copy: commit `99dc3c4`, check job succeeded in 83 seconds. | Verified | D2 |
+| Palantir MCP creates or updates object, link, and Action types only on a global branch (`globalBranchRid` is required). Each change reaches Main only through a proposal that Roshan merges. | Verified (tool schema, and the Phase 2 merge) | D3, D6 |
+| An Action type created by Palantir MCP gets the permission "everyone in the user's organization". Group-based submission criteria (D9.1) must be set in the platform UI. | Documented (tool schema) | D9 |
+| The public `@osdk/foundry-sdk-generator` 2.72.0 generates the `Cs` OSDK on this machine with `FOUNDRY_TOKEN` passed as an argument, and writes no token file. With public OSDK packages linked in, `tsc` type-checks `clearspend-functions` locally (`npm run functions:harness`, then `npm run functions:typecheck`). A wrong property name fails with TS2339. | Verified | D2 |
+| In an Action, the template recommends a "current user" Action parameter for the actor's user ID. `Admin.Users.getCurrent(client)` from `@osdk/foundry` also returns the user, but may be denied. | Documented (template AGENTS.md) | D6, D9 |
+| A function-backed Action applied through REST (`/api/v2/ontologies/{rid}/actions/{apiName}/apply`) returned `ActionTypeNotFound` right after the merge, and worked about 1 minute later. | Verified | D8 |
+| `Users.getCurrent(client)` from `@osdk/foundry.admin` works inside the Action functions: every import batch stored the actor's user ID. | Verified | D6, D9 |
+| A `UserFacingError` message reaches the REST caller in the error body, so the script can read `REPLAYED`, `STALE_COMMAND`, and `REQUEST_ID_REUSED`. | Verified | D6, D8 |
+| TypeScript v2 functions have no webhook support. | Documented (template AGENTS.md) | D6 |
 | TypeScript v2 functions generate a local OSDK from their resource imports. A functions repository can install npm packages from Foundry and from npmjs.com. Only pure JavaScript packages work. | Documented | D2 |
 
 ## Not yet known

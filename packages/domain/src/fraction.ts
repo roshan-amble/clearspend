@@ -111,3 +111,17 @@ export function formatFixed(value: Fraction, decimals: number): string {
   const text = decimals === 0 ? whole.toString() : `${whole}.${fractionPart}`;
   return negative ? `-${text}` : text;
 }
+
+/** Exact text "numerator/denominator" for storage (D3: never a floating-point double). Example: "11/2000". */
+export function exactText(value: Fraction): string {
+  return `${value.num}/${value.den}`;
+}
+
+/** Reads text written by `exactText`. */
+export function parseExactText(text: string): Fraction {
+  const match = /^(-?\d+)\/(\d+)$/.exec(text);
+  if (match === null) {
+    throw new DomainError("INVALID_EXACT_TEXT", `"${text}" is not an exact fraction like 11/2000.`);
+  }
+  return frac(BigInt(match[1] as string), BigInt(match[2] as string));
+}

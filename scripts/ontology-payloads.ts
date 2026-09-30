@@ -1,10 +1,13 @@
 /**
- * Prints the Palantir MCP inputs for the Cs object types in scripts/lib/ontology.ts:
- * the empty backing dataset schema and the object type property list, for each type.
+ * Prints the Palantir MCP inputs for the Cs object types and link types in scripts/lib/ontology.ts:
+ * the empty backing dataset schema and the object type property list for each type, and each link type.
  * Edit-only properties (arrays, and properties added later) have no dataset column. Only Actions write them.
  * Run: npm run -s ontology:payloads > <file>
  */
-import { DOCUMENT_FIELDS, OBJECT_TYPES, type PropertyKind, type PropertySpec } from "./lib/ontology.js";
+import { DOCUMENT_FIELDS, LINK_TYPES, OBJECT_TYPES, type PropertyKind, type PropertySpec } from "./lib/ontology.js";
+
+/** Foundry adds this prefix to every object type ID on this enrollment (docs/foundry-resources.md). */
+const FOUNDRY_ID_PREFIX = "fvhlhlrq.";
 
 const ARRAY_KINDS: ReadonlySet<PropertyKind> = new Set(["stringArray", "documentArray"]);
 const isEditOnly = (property: PropertySpec): boolean => property.editOnly === true || ARRAY_KINDS.has(property.kind);
@@ -70,10 +73,16 @@ function columnFromSource(property: PropertySpec): string {
   return property.source;
 }
 
-const payloads = OBJECT_TYPES.map((type) => ({
+const kebab = (apiName: string): string => apiName.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
+const title = (apiName: string): string => {
+  const words = apiName.replace(/([A-Z])/g, " $1");
+  return words.charAt(0).toUpperCase() + words.slice(1);
+};
+
+const objectTypes = OBJECT_TYPES.map((type) => ({
   apiName: type.apiName,
   existingDataset: type.existingDataset ?? null,
-  objectTypeId: type.apiName.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase(),
+  objectTypeId: kebab(type.apiName),
   datasetName: type.apiName.replace(/([a-z])([A-Z])/g, "$1_$2").toLowerCase(),
   datasetSchema: type.properties.filter((property) => !isEditOnly(property)).map(datasetColumn),
   csvHeader: type.properties
@@ -104,4 +113,22 @@ const payloads = OBJECT_TYPES.map((type) => ({
   },
 }));
 
-console.log(JSON.stringify(payloads, null, 2));
+const primaryKeyOf = (apiName: string): string => {
+  const type = OBJECT_TYPES.find((candidate) => candidate.apiName === apiName);
+  if (type === undefined) throw new Error(`Unknown object type ${apiName}.`);
+  return type.primaryKey;
+};
+
+const linkTypes = LINK_TYPES.map((link) => ({
+  linkTypeId: link.id,
+  apiName: camel(link.id.replaceAll("-", "_")),
+  displayName: title(camel(link.id.replaceAll("-", "_"))),
+  pluralDisplayName: title(camel(link.id.replaceAll("-", "_"))),
+  linkTypeCardinality: "ONE_TO_MANY",
+  leftSide: { objectTypeId: FOUNDRY_ID_PREFIX + kebab(link.one), propertyId: primaryKeyOf(link.one) },
+  rightSide: { objectTypeId: FOUNDRY_ID_PREFIX + kebab(link.many), propertyId: link.foreignKey },
+  leftToRightLinkMetadata: { apiName: link.toMany, displayName: title(link.toMany), pluralDisplayName: title(link.toMany) },
+  rightToLeftLinkMetadata: { apiName: link.toOne, displayName: title(link.toOne), pluralDisplayName: `${title(link.toOne)}s` },
+}));
+
+console.log(JSON.stringify({ objectTypes, linkTypes }, null, 2));
