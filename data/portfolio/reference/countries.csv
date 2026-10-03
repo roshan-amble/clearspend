@@ -1,0 +1,23 @@
+country_iso3,name,flag,program_region,expansion_id,status,schools,students,hub,currency,synthetic
+MDG,Madagascar,🇲🇬,Androy,EXP-MDG-ANDROY-2027,NEW,20,6000,JNB,MGA,true
+KEN,Kenya,🇰🇪,Turkana,EXP-KEN-2026,ACTIVE,261,96000,NBO,KES,true
+ETH,Ethiopia,🇪🇹,Afar,EXP-ETH-2026,ACTIVE,432,142000,NBO,ETB,true
+SOM,Somalia,🇸🇴,Bay,EXP-SOM-2026,ACTIVE,122,38000,NBO,SOS,true
+SSD,South Sudan,🇸🇸,Jonglei,EXP-SSD-2026,ACTIVE,152,54000,NBO,SSP,true
+UGA,Uganda,🇺🇬,Karamoja,EXP-UGA-2026,ACTIVE,323,120000,NBO,UGX,true
+RWA,Rwanda,🇷🇼,Eastern,EXP-RWA-2026,ACTIVE,228,61000,NBO,RWF,true
+NER,Niger,🇳🇪,Tillabéri,EXP-NER-2026,ACTIVE,276,88000,DKR,XOF,true
+MLI,Mali,🇲🇱,Mopti,EXP-MLI-2026,ACTIVE,348,104000,DKR,XOF,true
+TCD,Chad,🇹🇩,Lac,EXP-TCD-2026,ACTIVE,135,47000,DKR,XAF,true
+BFA,Burkina Faso,🇧🇫,Sahel,EXP-BFA-2026,ACTIVE,257,73000,DKR,XOF,true
+NGA,Nigeria,🇳🇬,Borno,EXP-NGA-2026,ACTIVE,510,150000,DKR,NGN,true
+MOZ,Mozambique,🇲🇿,Cabo Delgado,EXP-MOZ-2026,ACTIVE,231,69000,JNB,MZN,true
+MWI,Malawi,🇲🇼,Dedza,EXP-MWI-2026,ACTIVE,378,112000,JNB,MWK,true
+ZMB,Zambia,🇿🇲,Western,EXP-ZMB-2026,ACTIVE,177,58000,JNB,ZMW,true
+ZWE,Zimbabwe,🇿🇼,Masvingo,EXP-ZWE-2026,ACTIVE,221,77000,JNB,USD,true
+COD,DR Congo,🇨🇩,Kasaï,EXP-COD-2026,ACTIVE,489,131000,JNB,CDF,true
+HTI,Haiti,🇭🇹,Nord-Ouest,EXP-HTI-2026,ACTIVE,195,66000,PTY,HTG,true
+GTM,Guatemala,🇬🇹,Alta Verapaz,EXP-GTM-2026,ACTIVE,271,84000,PTY,GTQ,true
+BGD,Bangladesh,🇧🇩,Cox's Bazar,EXP-BGD-2026,ACTIVE,458,148000,BKK,BDT,true
+NPL,Nepal,🇳🇵,Karnali,EXP-NPL-2026,ACTIVE,200,52000,BKK,NPR,true
+LAO,Laos,🇱🇦,Phongsaly,EXP-LAO-2026,ACTIVE,111,36000,BKK,LAK,true

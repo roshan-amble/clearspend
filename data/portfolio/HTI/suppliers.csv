@@ -1,0 +1,6 @@
+source_system,supplier_id,name,route,country
+hti/harbor-erp,SUP-A,Nord-Ouest Foods SA (fictional),IMPORT,HT
+hti/harbor-erp,SUP-B,Nord-Ouest Supply Coopérative (fictional),IMPORT,HT
+hti/harbor-erp,SUP-C,Nord-Ouest Harvest SARL (fictional),LOCAL,HT
+hti/harbor-erp,SUP-D,Nord-Ouest Foods Négoce (fictional),LOCAL,HT
+hti/harbor-erp,SUP-E,Nord-Ouest Mills SARL (fictional),IMPORT,HT

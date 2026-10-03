@@ -1,0 +1,8 @@
+source_system,supplier_id,name,route,country
+bgd/harbor-erp,SUP-A,Cox's Bazar Agro Cooperative (fictional),LOCAL,BD
+bgd/harbor-erp,SUP-B,Cox's Bazar Supply Traders (fictional),LOCAL,BD
+bgd/harbor-erp,SUP-C,Cox's Bazar Commodities Cooperative (fictional),IMPORT,BD
+bgd/harbor-erp,SUP-D,Cox's Bazar Grain Co. (fictional),LOCAL,BD
+bgd/harbor-erp,SUP-E,Cox's Bazar Supply Traders (fictional),IMPORT,BD
+bgd/harbor-erp,SUP-F,Cox's Bazar Pulses Cooperative (fictional),IMPORT,BD
+bgd/harbor-erp,SUP-G,Cox's Bazar Trading Co. (fictional),IMPORT,BD

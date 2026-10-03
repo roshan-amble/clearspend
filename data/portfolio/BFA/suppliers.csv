@@ -1,0 +1,8 @@
+source_system,supplier_id,name,route,country
+bfa/harbor-erp,SUP-A,Sahel Pulses Négoce (fictional),LOCAL,BF
+bfa/harbor-erp,SUP-B,Sahel Supply Négoce (fictional),IMPORT,BF
+bfa/harbor-erp,SUP-C,Sahel Agro SARL (fictional),LOCAL,BF
+bfa/harbor-erp,SUP-D,Sahel Mills Négoce (fictional),IMPORT,BF
+bfa/harbor-erp,SUP-E,Sahel Foods SA (fictional),LOCAL,BF
+bfa/harbor-erp,SUP-F,Sahel Mills Négoce (fictional),LOCAL,BF
+bfa/harbor-erp,SUP-G,Sahel Foods Négoce (fictional),IMPORT,BF

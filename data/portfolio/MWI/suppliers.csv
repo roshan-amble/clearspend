@@ -1,0 +1,8 @@
+source_system,supplier_id,name,route,country
+mwi/harbor-erp,SUP-A,Dedza Harvest Cooperative (fictional),LOCAL,MW
+mwi/harbor-erp,SUP-B,Dedza Agro Traders (fictional),LOCAL,MW
+mwi/harbor-erp,SUP-C,Dedza Produce Co. (fictional),LOCAL,MW
+mwi/harbor-erp,SUP-D,Dedza Agro Ltd (fictional),IMPORT,MW
+mwi/harbor-erp,SUP-E,Dedza Commodities Traders (fictional),LOCAL,MW
+mwi/harbor-leads,SUP-L1,Green Produce Traders (fictional),LOCAL,MW
+mwi/harbor-leads,SUP-L2,Green Foods Traders (fictional),LOCAL,MW

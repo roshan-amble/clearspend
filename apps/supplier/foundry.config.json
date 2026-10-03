@@ -1,0 +1,11 @@
+{
+  "foundryUrl": "https://roshan-amble.usw-3.palantirfoundry.com",
+  "site": {
+    "application": "ri.third-party-applications.main.application.a8028b96-ebda-46f7-a886-9e51a7051066",
+    "directory": "./dist",
+    "autoVersion": {
+      "type": "git-describe",
+      "tagPrefix": ""
+    }
+  }
+}

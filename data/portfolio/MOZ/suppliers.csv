@@ -1,0 +1,6 @@
+source_system,supplier_id,name,route,country
+moz/harbor-erp,SUP-A,Cabo Delgado Mills Comercial (fictional),IMPORT,MZ
+moz/harbor-erp,SUP-B,Cabo Delgado Foods Lda (fictional),IMPORT,MZ
+moz/harbor-erp,SUP-C,Cabo Delgado Produce Comercial (fictional),LOCAL,MZ
+moz/harbor-erp,SUP-D,Cabo Delgado Commodities Lda (fictional),IMPORT,MZ
+moz/harbor-erp,SUP-E,Cabo Delgado Trading Cooperativa (fictional),IMPORT,MZ

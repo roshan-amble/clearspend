@@ -1,0 +1,25 @@
+{
+  "name": "@clearspend/supplier",
+  "private": true,
+  "type": "module",
+  "description": "ClearSpend supplier site: a supplier offers a price and a monthly quantity. It reads only program names and applies only the submit Action, through its own restricted Developer Console app (D9, P11).",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -p . && vite build",
+    "typecheck": "tsc -p ."
+  },
+  "dependencies": {
+    "@clearspend-suppliers/sdk": "^0.1.0",
+    "@clearspend/domain": "*",
+    "@osdk/client": "^2.75.0",
+    "@osdk/oauth": "^1.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^7.3.6"
+  }
+}

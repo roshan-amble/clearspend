@@ -17,7 +17,7 @@ Context and constraints: [platform-facts.md](platform-facts.md).
 | 6 | Data import | A script that uploads reference data and applies import Actions for evidence | Each demo reset repeats exactly. |
 | 7 | Outreach email | A Foundry notification to Roshan's own Foundry user, as the test inbox | No outside system. It cannot reach a real business. |
 | 8 | Repository | npm workspaces | The same tool as Opstastic. |
-| 9 | AI jobs | AIP Logic functions | The same kind as the smoke test. |
+| 9 | AI jobs | Changed 2026-09-30 (D7.1 B): TypeScript v2 functions call a Palantir-provided model through AIP's model proxy (`@osdk/language-models`). | Palantir MCP cannot build AIP Logic functions, and the project is late. The output validation of D7 is the same. |
 | 10 | Domain code in Functions | A Foundry TypeScript v2 functions repository. A script copies `packages/domain/src` into its `src/domain/` folder with its SHA-256 digest. (Not `src/generated/`: the template's `.gitignore` excludes it.) A test in this repository fails if the copy differs from the source. Object types are created with Palantir MCP on a Foundry branch. | TypeScript v2 functions are generally available. SuperRepo is beta, its CLI is not notarized, and `foundry login` stores credentials on disk. A published npm package needs a publish for each rule change. The copy is generated, so the brief's rule against 2 hand-copied rules holds. |
 
 ## Components
@@ -65,6 +65,21 @@ Context and constraints: [platform-facts.md](platform-facts.md).
 - Whether an Action can be backed by an AIP Logic function that writes a proposal object. The AIP Logic home
   page says "Use your Logic function in Actions or Automations".
 - Whether Website hosting and notification side effects work on the dev tier.
+
+## Amendment, 2026-09-30: monthly price history (UI5 A)
+
+Roshan chose UI5 A. The query function `csPriceHistory(expansionId)` returns, for each food, the monthly paid and
+unreconciled spend, accepted and failed volume by cause, each purchase's unit price, each lead's quote, the WFP market
+medians by month, and the target. The rules live in `packages/domain/src/history.ts` (`priceHistory`) with tests.
+It is computed on each call from stored evidence and never stored, so it adds no object type. The browser still only
+formats: chart positions use the exact values that the function returns.
+
+## Amendment, 2026-09-30: the React app (UI1 A)
+
+Roshan chose UI1 A: the POC's design tokens in React, with ECharts (SVG renderer) for charts. Dark theme by default,
+gray as the alternative, no pure white. Screens: Overview, Price intelligence, Incident review, Suppliers & leads,
+System map, and the development-only Data studio (D9). Each part of a screen names the object, Action, or function
+behind it ("Show functions").
 
 ## Help received
 

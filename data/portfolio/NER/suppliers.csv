@@ -1,0 +1,8 @@
+source_system,supplier_id,name,route,country
+ner/harbor-erp,SUP-A,Tillabéri Agro Négoce (fictional),LOCAL,NE
+ner/harbor-erp,SUP-B,Tillabéri Trading Négoce (fictional),LOCAL,NE
+ner/harbor-erp,SUP-C,Tillabéri Commodities SARL (fictional),LOCAL,NE
+ner/harbor-erp,SUP-D,Tillabéri Harvest Coopérative (fictional),LOCAL,NE
+ner/harbor-erp,SUP-E,Tillabéri Commodities SARL (fictional),LOCAL,NE
+ner/harbor-erp,SUP-F,Tillabéri Supply SARL (fictional),IMPORT,NE
+ner/harbor-erp,SUP-G,Tillabéri Commodities SARL (fictional),IMPORT,NE

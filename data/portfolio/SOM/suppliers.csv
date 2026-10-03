@@ -1,0 +1,6 @@
+source_system,supplier_id,name,route,country
+som/harbor-erp,SUP-A,Bay Mills Cooperative (fictional),LOCAL,SO
+som/harbor-erp,SUP-B,Bay Pulses Traders (fictional),IMPORT,SO
+som/harbor-erp,SUP-C,Bay Mills Cooperative (fictional),IMPORT,SO
+som/harbor-erp,SUP-D,Bay Supply Co. (fictional),IMPORT,SO
+som/harbor-erp,SUP-E,Bay Harvest Ltd (fictional),IMPORT,SO

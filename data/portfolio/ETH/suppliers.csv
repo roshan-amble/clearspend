@@ -1,0 +1,7 @@
+source_system,supplier_id,name,route,country
+eth/harbor-erp,SUP-A,Afar Harvest Cooperative (fictional),LOCAL,ET
+eth/harbor-erp,SUP-B,Afar Agro Traders (fictional),IMPORT,ET
+eth/harbor-erp,SUP-C,Afar Foods Cooperative (fictional),LOCAL,ET
+eth/harbor-erp,SUP-D,Afar Agro Cooperative (fictional),LOCAL,ET
+eth/harbor-erp,SUP-E,Afar Commodities Cooperative (fictional),LOCAL,ET
+eth/harbor-erp,SUP-F,Afar Agro Cooperative (fictional),IMPORT,ET

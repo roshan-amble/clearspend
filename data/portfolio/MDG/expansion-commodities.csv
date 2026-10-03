@@ -1,0 +1,5 @@
+expansion_id,commodity,unit,quantity_per_meal,max_moisture_permille,planned_per_month,market_volume_estimate_per_month,market_volume_label,market_series_local,market_series_import
+EXP-MDG-ANDROY-2027,RICE,g,100,140,11960000,400000000,synthetic,Rice (local),Rice (imported)
+EXP-MDG-ANDROY-2027,BEANS,g,30,130,3120000,22000000,synthetic,"Beans (niebe, red)","Beans (niebe, red)"
+EXP-MDG-ANDROY-2027,OIL,ml,10,,1170000,9000000,synthetic,"Oil (vegetable, packaged)","Oil (vegetable, packaged)"
+EXP-MDG-ANDROY-2027,CSB,g,40,100,1040000,2000000,synthetic,Super Cereal (imported),Super Cereal (imported)

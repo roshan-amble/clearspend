@@ -1,0 +1,23 @@
+[
+  {
+    "source_system": "ken/harbor-erp",
+    "incident_id": "INC-01",
+    "order_id": "PO-004",
+    "reported_at": "2026-06-22T08:00:00Z",
+    "affected_quantity_kg": 25517,
+    "documents": [
+      {
+        "document_id": "DOC-INC-01-WAREHOUSE",
+        "author_role": "warehouse_manager",
+        "recorded_at": "2026-06-20T08:00:00Z",
+        "text": "Bags from PO-004 arrived damp at the school cluster warehouse in Turkana, and many bags were torn. About 25,517 kg cannot be used. In my view the supplier's packaging was not fit for the season."
+      },
+      {
+        "document_id": "DOC-INC-01-TRANSPORT",
+        "author_role": "transport_contractor",
+        "recorded_at": "2026-06-19T08:00:00Z",
+        "text": "The program truck loaded PO-004 at the depot on 2026-06-14, after the handover. Heavy rain closed the road for 3 days and the truck waited uncovered. It reached the school cluster warehouse on 2026-06-18."
+      }
+    ]
+  }
+]

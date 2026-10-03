@@ -1,0 +1,12 @@
+[
+  {
+    "source_system": "uga/harbor-leads",
+    "supplier_id": "SUP-L1",
+    "commodity": "MAIZE",
+    "language": "en",
+    "quoted_price_cents_per_kg": 31,
+    "claimed_capacity_kg_per_month": 234000,
+    "submitted_at": "2026-09-11T08:00:00Z",
+    "text": "Green Mills Traders (fictional). Maize from Karamoja. Price: 0.31 USD per kg, delivered to the program depot. Capacity: 234,000 kg a month. Quality checked at loading."
+  }
+]

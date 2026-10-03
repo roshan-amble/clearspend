@@ -1,5 +1,5 @@
 import { classifyByRule, resolveIncidentCause, type CauseConfirmation, type CauseStatus } from "./causes.js";
-import { computeCostLine, costPurchaseFrom, type CostIncident, type CostLine, type CostPurchase } from "./cost.js";
+import { computeCostLine, costPurchaseFrom, quotedCentsPerUnit, type CostIncident, type CostLine, type CostPurchase } from "./cost.js";
 import {
   heads,
   type CommodityProps,
@@ -8,11 +8,13 @@ import {
   type InvoiceProps,
   type OrderProps,
   type PaymentProps,
+  type ProfileProps,
   type StoredVersion,
 } from "./evidence.js";
-import { exactText, type Fraction } from "./fraction.js";
+import { div, exactText, fromSafeInteger, mul, type Fraction } from "./fraction.js";
 import { marketPressure, monthlyMedians, relativeChange, type MarketPrice, type MarketPressure } from "./market.js";
 import { reconcilePurchase, type PurchaseEvidence, type ReconciliationResult } from "./reconcile.js";
+import { supplierEligibility, type EligibilityStatus, type FieldVerificationRef } from "./transitions.js";
 import type { Cause, Route } from "./types.js";
 
 /** 1 stored version of an evidence record, as the Action loads it from the Ontology. */
@@ -33,7 +35,8 @@ export interface ActiveRecord<P> {
 export function activeRecords<P>(records: readonly StoredRecord<P>[]): ActiveRecord<P>[] {
   const byLogicalId = new Map<string, StoredRecord<P>[]>();
   for (const record of records) byLogicalId.set(record.logicalId, [...(byLogicalId.get(record.logicalId) ?? []), record]);
-  return [...byLogicalId.values()].map((versions) => {
+  // Sorted by logical ID, so findings list evidence in the same order whatever order the Ontology returns objects in.
+  return [...byLogicalId.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([, versions]) => {
     const headIds = new Set(heads(versions).map((version) => version.versionId));
     const current = versions
       .filter((version) => headIds.has(version.versionId))
@@ -53,6 +56,12 @@ export interface SnapshotInput {
   /** CONFIRM_CAUSE decisions, by incident logical ID. */
   readonly confirmations: ReadonlyMap<string, readonly CauseConfirmation[]>;
   readonly marketPrices: readonly MarketPrice[];
+  /** Local lead profiles of the expansion (Phase 4). A lead with no purchase gets a line with its quote only. */
+  readonly profiles?: readonly StoredRecord<ProfileProps>[];
+  /** Field verifications, by supplier logical ID (C9). */
+  readonly verifications?: ReadonlyMap<string, readonly FieldVerificationRef[]>;
+  /** The expansion's current ration version. A verification against another version does not count (C9). */
+  readonly rationVersion?: number;
 }
 
 export interface SeriesChange {
@@ -81,7 +90,18 @@ export interface Snapshot {
     readonly status: CauseStatus;
     readonly effectiveCause: Cause | null;
   }[];
-  readonly lines: readonly { readonly supplierLogicalId: string; readonly route: Route; readonly commodity: string; readonly line: CostLine }[];
+  readonly lines: readonly {
+    readonly supplierLogicalId: string;
+    readonly route: Route;
+    readonly commodity: string;
+    readonly line: CostLine;
+    /** Base units in 1 meal of this commodity (D11), or null when the expansion has no ration for it. */
+    readonly quantityPerMeal: number | null;
+    /** C7: a lead's quoted cents for each kilogram or litre. Always a quote, never a paid cost. */
+    readonly quotedCentsPer1000: number | null;
+    /** D5 and C9. Derived from field verifications only. Selection for a visit is shown from decisions. */
+    readonly eligibility: EligibilityStatus;
+  }[];
   readonly market: readonly CommodityMarket[];
   /** I8: the latest market month that the snapshot used. */
   readonly marketDataAsOf: string | null;
@@ -205,16 +225,39 @@ export function buildSnapshot(input: SnapshotInput): Snapshot {
   for (const purchase of costPurchases) {
     pairs.set(`${purchase.supplierId}|${purchase.commodity}`, { supplierLogicalId: purchase.supplierId, commodity: purchase.commodity });
   }
-  // Sorted, so the same evidence always gives the same snapshot, whatever order the Ontology returns objects in.
-  const sortedPairs = [...pairs.values()].sort(
-    (a, b) => a.commodity.localeCompare(b.commodity) || a.supplierLogicalId.localeCompare(b.supplierLogicalId),
-  );
-  const lines = sortedPairs.flatMap(({ supplierLogicalId, commodity }) => {
-    const route = routeOf.get(supplierLogicalId);
-    if (route === undefined) return [];
-    const line = computeCostLine({ supplierId: supplierLogicalId, commodity, purchases: costPurchases, incidents: costIncidents });
-    return [{ supplierLogicalId, route, commodity, line }];
-  });
+  // Lines are sorted below, so the same evidence always gives the same snapshot, whatever the Ontology's order.
+  // Leads: a local supplier with a profile and no purchase gets a line too (C6: 0 batches, unknown failure risk).
+  const quotes = new Map<string, number>();
+  for (const { record } of activeRecords(input.profiles ?? [])) {
+    const key = `${record.props.supplierLogicalId}|${record.props.commodity}`;
+    quotes.set(key, record.props.quotedCentsPer1000);
+    if (!pairs.has(key)) pairs.set(key, { supplierLogicalId: record.props.supplierLogicalId, commodity: record.props.commodity });
+  }
+  const eligibilityOf = (supplierLogicalId: string): EligibilityStatus =>
+    supplierEligibility({
+      currentRationVersion: input.rationVersion ?? 1,
+      verifications: input.verifications?.get(supplierLogicalId) ?? [],
+      selectedForVisit: false,
+    });
+  const perMealOf = new Map(input.commodities.map((item) => [item.commodity, item.quantityPerMeal] as const));
+  const lines = [...pairs.values()]
+    .sort((a, b) => a.commodity.localeCompare(b.commodity) || a.supplierLogicalId.localeCompare(b.supplierLogicalId))
+    .flatMap(({ supplierLogicalId, commodity }) => {
+      const route = routeOf.get(supplierLogicalId);
+      if (route === undefined) return [];
+      const line = computeCostLine({ supplierId: supplierLogicalId, commodity, purchases: costPurchases, incidents: costIncidents });
+      return [
+        {
+          supplierLogicalId,
+          route,
+          commodity,
+          line,
+          quantityPerMeal: perMealOf.get(commodity) ?? null,
+          quotedCentsPer1000: quotes.get(`${supplierLogicalId}|${commodity}`) ?? null,
+          eligibility: eligibilityOf(supplierLogicalId),
+        },
+      ];
+    });
 
   const market = [...input.commodities].sort((a, b) => a.commodity.localeCompare(b.commodity)).map((commodity) => {
     const seriesByRoute: [string, Route][] = [
@@ -257,6 +300,10 @@ export interface CostSnapshotProps {
   readonly createdAt: string;
   readonly marketIndicatorsJson: string;
   readonly marketDataAsOf: string | null;
+  /** Screen B: each purchase's reconciliation status and every finding (brief section 8). */
+  readonly purchasesJson: string;
+  /** Screen B: each incident's cause status and the cause the cost model used. */
+  readonly incidentsJson: string;
 }
 
 export interface CostLineProps {
@@ -277,13 +324,50 @@ export interface CostLineProps {
   readonly unconfirmedFailures: number;
   readonly failureRisk: "KNOWN" | "UNKNOWN";
   readonly quotedCentsPer1000: number | null;
-  /** Phase 2 has no field verifications yet (CsFieldVerification is Phase 4), so eligibility is not assessed. */
-  readonly eligibility: string;
+  /** LEAD, VERIFIED_PASS, or VERIFIED_FAIL, from field verifications against the current ration version (C9). */
+  readonly eligibility: EligibilityStatus;
   readonly excludedJson: string;
   readonly ambiguousReplacements: readonly string[];
+  /** D11: exact cents for 1 meal. The browser only formats them (brief section 7: round only at presentation). */
+  readonly perMealJson: string;
 }
 
 const exactOrNull = (value: Fraction | null | undefined): string | null => (value === null || value === undefined ? null : exactText(value));
+
+/** D11: cents for 1 meal = cents for each base unit × base units in 1 meal. Exact, as text. */
+function perMeal(line: CostLine, quantityPerMeal: number | null, quotedCentsPer1000: number | null) {
+  if (quantityPerMeal === null) return { quantityPerMeal: null };
+  const quantity = fromSafeInteger(quantityPerMeal, "quantityPerMeal");
+  const perMealOf = (value: Fraction | null | undefined): Fraction | null => (value === null || value === undefined ? null : mul(value, quantity));
+  // Brief section 5: meals for 1 US dollar, 100 cents divided by the cents for 1 meal. A higher cost gives fewer
+  // meals, so the low end of a meals range comes from the high end of the cost range.
+  const perDollarOf = (cents: Fraction | null): string | null =>
+    cents === null || cents.num === 0n ? null : exactText(div(fromSafeInteger(100, "cents"), cents));
+  const nominal = perMealOf(line.nominal);
+  const supplierLow = perMealOf(line.supplier?.low);
+  const supplierHigh = perMealOf(line.supplier?.high);
+  const routeLow = perMealOf(line.route?.low);
+  const routeHigh = perMealOf(line.route?.high);
+  // C7: kept apart from every paid cost, so no screen can show a quote as a paid cost or a saving.
+  const quoted = quotedCentsPer1000 === null ? null : perMealOf(quotedCentsPerUnit(quotedCentsPer1000));
+  return {
+    quantityPerMeal,
+    nominal: exactOrNull(nominal),
+    supplierLow: exactOrNull(supplierLow),
+    supplierHigh: exactOrNull(supplierHigh),
+    routeLow: exactOrNull(routeLow),
+    routeHigh: exactOrNull(routeHigh),
+    quoted: exactOrNull(quoted),
+    mealsPerDollar: {
+      nominal: perDollarOf(nominal),
+      supplierLow: perDollarOf(supplierHigh),
+      supplierHigh: perDollarOf(supplierLow),
+      routeLow: perDollarOf(routeHigh),
+      routeHigh: perDollarOf(routeLow),
+      quoted: perDollarOf(quoted),
+    },
+  };
+}
 
 /** The objects that 1 snapshot writes: 1 CsCostSnapshot and 1 CsCostLine for each supplier and commodity. */
 export function snapshotRecords(
@@ -314,8 +398,12 @@ export function snapshotRecords(
       createdAt: meta.createdAt,
       marketIndicatorsJson: JSON.stringify(market),
       marketDataAsOf: snapshot.marketDataAsOf,
+      purchasesJson: JSON.stringify(
+        snapshot.purchases.map(({ orderLogicalId, result }) => ({ orderLogicalId, status: result.status, findings: result.findings })),
+      ),
+      incidentsJson: JSON.stringify(snapshot.incidents),
     },
-    lines: snapshot.lines.map(({ supplierLogicalId, route, commodity, line }) => ({
+    lines: snapshot.lines.map(({ supplierLogicalId, route, commodity, line, quantityPerMeal, quotedCentsPer1000, eligibility }) => ({
       costLineId: `${snapshotId}:${supplierLogicalId}:${commodity}`,
       snapshotId,
       expansionId: meta.expansionId,
@@ -332,10 +420,11 @@ export function snapshotRecords(
       otherFailures: line.failures.other,
       unconfirmedFailures: line.failures.unconfirmed,
       failureRisk: line.failureRisk,
-      quotedCentsPer1000: null,
-      eligibility: "NOT_ASSESSED",
+      quotedCentsPer1000,
+      eligibility,
       excludedJson: JSON.stringify(line.excluded),
       ambiguousReplacements: line.ambiguousReplacements,
+      perMealJson: JSON.stringify(perMeal(line, quantityPerMeal, quotedCentsPer1000)),
     })),
   };
 }

@@ -1,0 +1,17 @@
+[
+  {
+    "source_system": "eth/harbor-erp",
+    "incident_id": "INC-01",
+    "order_id": "PO-002",
+    "reported_at": "2026-04-14T10:00:00Z",
+    "affected_quantity_kg": 184600,
+    "documents": [
+      {
+        "document_id": "DOC-INC-01-LAB",
+        "author_role": "receiving_lab",
+        "recorded_at": "2026-04-14T09:30:00Z",
+        "text": "Receipt test for PO-002: moisture 15.7% against a maximum of 13.5%. The lot is rejected and returned to the supplier."
+      }
+    ]
+  }
+]

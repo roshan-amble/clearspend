@@ -1,0 +1,7 @@
+source_system,verification_id,supplier_id,ration_version,visited_at,verifier,result,moisture_permille,confirmed_capacity_kg_per_month,notes
+npl/harbor-field,FV-SUP-A-2026-02,SUP-A,1,2026-02-12T08:00:00Z,field-verifier,PASS,130,315717,Current rice supplier. Storage and packaging checked.
+npl/harbor-field,FV-SUP-B-2026-02,SUP-B,1,2026-02-25T08:00:00Z,field-verifier,PASS,115,51896,Current lentils supplier. Storage and packaging checked.
+npl/harbor-field,FV-SUP-C-2026-02,SUP-C,1,2026-02-03T08:00:00Z,field-verifier,PASS,,14420,Current oil supplier. Storage and packaging checked.
+npl/harbor-field,FV-SUP-D-2026-02,SUP-D,1,2026-02-20T08:00:00Z,field-verifier,PASS,92,24723,Current csb supplier. Storage and packaging checked.
+npl/harbor-field,FV-SUP-E-2026-02,SUP-E,1,2026-02-08T08:00:00Z,field-verifier,PASS,40,3858,Current milk supplier. Storage and packaging checked.
+npl/harbor-field,FV-SUP-F-2026-02,SUP-F,1,2026-02-10T08:00:00Z,field-verifier,PASS,136,6823,Current fish supplier. Storage and packaging checked.

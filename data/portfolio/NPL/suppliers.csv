@@ -1,0 +1,7 @@
+source_system,supplier_id,name,route,country
+npl/harbor-erp,SUP-A,Karnali Supply Traders (fictional),LOCAL,NP
+npl/harbor-erp,SUP-B,Karnali Grain Co. (fictional),LOCAL,NP
+npl/harbor-erp,SUP-C,Karnali Pulses Co. (fictional),LOCAL,NP
+npl/harbor-erp,SUP-D,Karnali Harvest Cooperative (fictional),IMPORT,NP
+npl/harbor-erp,SUP-E,Karnali Supply Cooperative (fictional),IMPORT,NP
+npl/harbor-erp,SUP-F,Karnali Produce Ltd (fictional),IMPORT,NP

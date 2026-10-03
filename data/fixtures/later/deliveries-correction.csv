@@ -1,0 +1,2 @@
+source_system,receipt_id,order_id,commodity,unit,quantity_received,received_at,handover_at,moisture_permille,acceptance_result
+harbor-erp,DEL-A5,PO-A5,RICE,kg,10000,2026-07-18T08:00:00Z,2026-07-18T08:00:00Z,127,PASS

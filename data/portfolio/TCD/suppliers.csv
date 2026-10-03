@@ -1,0 +1,8 @@
+source_system,supplier_id,name,route,country
+tcd/harbor-erp,SUP-A,Lac Trading SA (fictional),LOCAL,TD
+tcd/harbor-erp,SUP-B,Lac Mills SA (fictional),IMPORT,TD
+tcd/harbor-erp,SUP-C,Lac Commodities Coopérative (fictional),LOCAL,TD
+tcd/harbor-erp,SUP-D,Lac Supply Coopérative (fictional),LOCAL,TD
+tcd/harbor-erp,SUP-E,Lac Foods Coopérative (fictional),IMPORT,TD
+tcd/harbor-erp,SUP-F,Lac Produce Coopérative (fictional),IMPORT,TD
+tcd/harbor-erp,SUP-G,Lac Harvest Négoce (fictional),IMPORT,TD

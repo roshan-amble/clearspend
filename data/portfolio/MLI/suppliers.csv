@@ -1,0 +1,9 @@
+source_system,supplier_id,name,route,country
+mli/harbor-erp,SUP-A,Mopti Harvest SARL (fictional),LOCAL,ML
+mli/harbor-erp,SUP-B,Mopti Mills SA (fictional),LOCAL,ML
+mli/harbor-erp,SUP-C,Mopti Grain SARL (fictional),LOCAL,ML
+mli/harbor-erp,SUP-D,Mopti Grain SA (fictional),LOCAL,ML
+mli/harbor-erp,SUP-E,Mopti Grain Coopérative (fictional),IMPORT,ML
+mli/harbor-erp,SUP-F,Mopti Harvest Coopérative (fictional),LOCAL,ML
+mli/harbor-erp,SUP-G,Mopti Produce Coopérative (fictional),IMPORT,ML
+mli/harbor-leads,SUP-L1,Lakeside Trading SARL (fictional),LOCAL,ML

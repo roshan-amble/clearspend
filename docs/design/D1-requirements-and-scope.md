@@ -70,6 +70,25 @@ No design choice may break at a real nonprofit's size: about 5 regions, 20 foods
   C, the AI calculates or changes numbers.
 - Deferred to D7: the third quality need, from traceable decisions, honest uncertainty, speed, or availability.
 
+## Amendment, 2026-10-01: a portfolio of country programs (P1)
+
+Roshan widened the scope from 1 expansion to a portfolio: 22 country programs, each an expansion on the same cost
+engine, Actions, and D6 rules. Madagascar (Androy) is the new program: menus and 13 supplier leads, no supplier yet,
+so the story is the supplier decisions. The other 21 programs carry generated purchase histories (synthetic, labeled)
+with failures, unconfirmed causes, prices above market, and cheaper leads, so the portfolio has something to say.
+New in scope: meals with recipes shared across foods, nutrition against a reference, deterministic recommendations,
+and investigations booked with field investigators. Still out of scope: payments, purchase orders, and messages to
+anyone but Roshan (D1 hard limits unchanged).
+
+## Amendment, 2026-10-01: WFP-style activities (P5, P6)
+
+Harbor Meals stays the name, now described as a WFP-style food assistance organization. Each country program runs up
+to 3 activities: school meals, general food distribution (a full daily ration for refugees and displaced people),
+and nutrition support (Super Cereal for children aged 6 to 23 months). The portfolio counts people reached across
+activities, not students. Caseloads are synthetic. The purchase histories did not change: the general and nutrition
+rations add food needs on top of the same cost data, so large general distributions can outgrow local markets, which
+the sourcing plan then shows.
+
 ## Help received
 
 Level 4 on all parts: Claude gave options with costs, and no recommendation. Roshan chose each option.

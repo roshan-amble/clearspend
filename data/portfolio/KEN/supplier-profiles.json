@@ -1,0 +1,22 @@
+[
+  {
+    "source_system": "ken/harbor-leads",
+    "supplier_id": "SUP-L1",
+    "commodity": "RICE",
+    "language": "en",
+    "quoted_price_cents_per_kg": 73,
+    "claimed_capacity_kg_per_month": 129792,
+    "submitted_at": "2026-09-18T08:00:00Z",
+    "text": "New Foods Cooperative (fictional). Rice from Turkana. Price: 0.73 USD per kg, delivered to the program depot. Capacity: 129,792 kg a month. Quality checked at loading."
+  },
+  {
+    "source_system": "ken/harbor-leads",
+    "supplier_id": "SUP-L2",
+    "commodity": "BEANS",
+    "language": "en",
+    "quoted_price_cents_per_kg": 82,
+    "claimed_capacity_kg_per_month": 53248,
+    "submitted_at": "2026-09-05T08:00:00Z",
+    "text": "New Produce Cooperative (fictional). Beans from Turkana. Price: 0.82 USD per kg, delivered to the program depot. Capacity: 53,248 kg a month. Quality checked at loading."
+  }
+]

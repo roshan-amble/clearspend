@@ -9,7 +9,7 @@
  */
 import { randomUUID } from "node:crypto";
 import { parseArgs } from "node:util";
-import { applyAction, fetchObject, searchObjects, type ApplyResult } from "./lib/foundry.js";
+import { applyAction, currentUserId, fetchObject, searchObjects, type ApplyResult } from "./lib/foundry.js";
 import { namespaceExpansion } from "./lib/namespace.js";
 
 const ACTION = "cs-confirm-incident-cause";
@@ -35,6 +35,7 @@ const confirm = (requestId: string, expected: { evidenceRevision: number; stateV
     expectedEvidenceRevision: expected.evidenceRevision,
     expectedStateVersion: expected.stateVersion,
     requestId,
+    actorUserId: currentUserId(),
   });
 
 const kind = (result: ApplyResult): string => {

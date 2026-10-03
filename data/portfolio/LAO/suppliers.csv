@@ -1,0 +1,8 @@
+source_system,supplier_id,name,route,country
+lao/harbor-erp,SUP-A,Phongsaly Foods Traders (fictional),LOCAL,LA
+lao/harbor-erp,SUP-B,Phongsaly Foods Traders (fictional),IMPORT,LA
+lao/harbor-erp,SUP-C,Phongsaly Pulses Ltd (fictional),LOCAL,LA
+lao/harbor-erp,SUP-D,Phongsaly Grain Cooperative (fictional),IMPORT,LA
+lao/harbor-erp,SUP-E,Phongsaly Produce Traders (fictional),IMPORT,LA
+lao/harbor-erp,SUP-F,Phongsaly Supply Ltd (fictional),IMPORT,LA
+lao/harbor-leads,SUP-L1,Green Trading Cooperative (fictional),LOCAL,LA

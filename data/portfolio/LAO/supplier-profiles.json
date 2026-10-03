@@ -1,0 +1,12 @@
+[
+  {
+    "source_system": "lao/harbor-leads",
+    "supplier_id": "SUP-L1",
+    "commodity": "RICE",
+    "language": "en",
+    "quoted_price_cents_per_kg": 74,
+    "claimed_capacity_kg_per_month": 84240,
+    "submitted_at": "2026-09-17T08:00:00Z",
+    "text": "Green Trading Cooperative (fictional). Rice from Phongsaly. Price: 0.74 USD per kg, delivered to the program depot. Capacity: 84,240 kg a month. Quality checked at loading."
+  }
+]

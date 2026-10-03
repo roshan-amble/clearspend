@@ -1,0 +1,1 @@
+source_system,order_id,expansion_id,supplier_id,commodity,unit,quantity,unit_price_cents,total_cents,currency,replaces_order_id,replaces_incident_id,recorded_at

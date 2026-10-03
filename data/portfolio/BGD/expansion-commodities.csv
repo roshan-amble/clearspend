@@ -1,0 +1,7 @@
+expansion_id,commodity,unit,quantity_per_meal,max_moisture_permille,planned_per_month,market_volume_estimate_per_month,market_volume_label,market_series_local,market_series_import
+EXP-BGD-2026,RICE,g,150,140,384799950,7635324429,synthetic,Rice (local),Rice (imported)
+EXP-BGD-2026,LENTILS,g,40,130,76960000,1995920926,synthetic,Lentils (local),Lentils (imported)
+EXP-BGD-2026,OIL,ml,10,,22446665,1327804127,synthetic,Vegetable oil (local),Vegetable oil (imported)
+EXP-BGD-2026,CSB,g,60,100,38479980,1887987529,synthetic,Super Cereal (local),Super Cereal (imported)
+EXP-BGD-2026,MILK,g,10,50,6413330,281689400,synthetic,Milk powder (local),Milk powder (imported)
+EXP-BGD-2026,FISH,g,15,150,9619995,215288715,synthetic,Dried fish (local),Dried fish (imported)

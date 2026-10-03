@@ -1,0 +1,12 @@
+[
+  {
+    "source_system": "mli/harbor-leads",
+    "supplier_id": "SUP-L1",
+    "commodity": "SORGHUM",
+    "language": "fr",
+    "quoted_price_cents_per_kg": 34,
+    "claimed_capacity_kg_per_month": 162240,
+    "submitted_at": "2026-09-10T08:00:00Z",
+    "text": "Lakeside Trading SARL (fictif). Sorghum de la région Mopti. Prix : 0,34 USD le kg, livré au dépôt du programme. Capacité : 162,240 kg par mois. Contrôle qualité au chargement."
+  }
+]

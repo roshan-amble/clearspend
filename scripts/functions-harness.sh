@@ -23,9 +23,10 @@ cd "${harness}"
 npm install --no-audit --no-fund --silent \
   @osdk/foundry-sdk-generator@2.72.0 @osdk/client@2.72.0 @osdk/api@2.72.0 @osdk/functions@1.26.0 \
   @osdk/foundry@2.72.0 @opentelemetry/api@^1.9.0 @opentelemetry/api-logs@0.215.0 \
-  @osdk/foundry.admin@2.78.0 typescript@5.9 @types/node@24 vitest@4.0.18
+  @osdk/foundry.admin@2.78.0 @osdk/language-models@0.10.0 typescript@5.9 @types/node@24 vitest@4.0.18
 
-object_types="$(cd "${root}" && npx tsx -e 'import { OBJECT_TYPES } from "./scripts/lib/ontology.ts"; console.log(OBJECT_TYPES.map((t) => t.apiName).join(" "))')"
+# HARNESS_SKIP_TYPES: space-separated object types that are still on a branch (the generator reads main only).
+object_types="$(cd "${root}" && HARNESS_SKIP_TYPES="${HARNESS_SKIP_TYPES:-}" npx tsx -e 'import { OBJECT_TYPES } from "./scripts/lib/ontology.ts"; const skip = new Set((process.env.HARNESS_SKIP_TYPES ?? "").split(" ")); console.log(OBJECT_TYPES.map((t) => t.apiName).filter((n) => !skip.has(n)).join(" "))')"
 link_types="$(cd "${root}" && npx tsx -e 'import { LINK_TYPES } from "./scripts/lib/ontology.ts"; console.log(LINK_TYPES.flatMap((l) => [`${l.one}.${l.toMany}`, `${l.many}.${l.toOne}`]).join(" "))')"
 
 rm -rf sdk

@@ -1,0 +1,6 @@
+source_system,supplier_id,name,route,country
+ssd/harbor-erp,SUP-A,Jonglei Supply Ltd (fictional),LOCAL,SS
+ssd/harbor-erp,SUP-B,Jonglei Mills Traders (fictional),LOCAL,SS
+ssd/harbor-erp,SUP-C,Jonglei Agro Traders (fictional),LOCAL,SS
+ssd/harbor-erp,SUP-D,Jonglei Mills Co. (fictional),LOCAL,SS
+ssd/harbor-erp,SUP-E,Jonglei Grain Ltd (fictional),IMPORT,SS

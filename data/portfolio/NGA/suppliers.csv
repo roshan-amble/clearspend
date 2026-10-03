@@ -1,0 +1,11 @@
+source_system,supplier_id,name,route,country
+nga/harbor-erp,SUP-A,Borno Foods Cooperative (fictional),IMPORT,NG
+nga/harbor-erp,SUP-B,Borno Mills Co. (fictional),IMPORT,NG
+nga/harbor-erp,SUP-C,Borno Trading Cooperative (fictional),LOCAL,NG
+nga/harbor-erp,SUP-D,Borno Produce Cooperative (fictional),LOCAL,NG
+nga/harbor-erp,SUP-E,Borno Grain Cooperative (fictional),IMPORT,NG
+nga/harbor-erp,SUP-F,Borno Trading Co. (fictional),LOCAL,NG
+nga/harbor-erp,SUP-G,Borno Agro Cooperative (fictional),LOCAL,NG
+nga/harbor-erp,SUP-H,Borno Agro Traders (fictional),IMPORT,NG
+nga/harbor-erp,SUP-I,Borno Pulses Cooperative (fictional),IMPORT,NG
+nga/harbor-leads,SUP-L1,Unity Supply Co. (fictional),LOCAL,NG

@@ -1,7 +1,8 @@
 /**
  * Phase 2 exit check: reload what the Actions stored in Foundry, and compare the current CsCostSnapshot and its
  * CsCostLine objects field by field with the same domain code run locally on the fixtures.
- * Run: npm run verify:snapshot -- --namespace t1 [--confirmed INC-A4=TRANSPORT_AFTER_HANDOVER]
+ * Run: npm run verify:snapshot -- --namespace t1 [--confirmed INC-A4=TRANSPORT_AFTER_HANDOVER] [--later]
+ *      [--leads] [--verifications field-verifications-initial.csv] (Phase 4: lead lines and eligibility)
  */
 import { parseArgs } from "node:util";
 import { snapshotRecords, type Cause } from "@clearspend/domain";
@@ -9,7 +10,15 @@ import { expectedSnapshot } from "./lib/expected-snapshot.js";
 import { fetchObject, searchObjects } from "./lib/foundry.js";
 import { namespaceExpansion } from "./lib/namespace.js";
 
-const { values } = parseArgs({ options: { namespace: { type: "string" }, confirmed: { type: "string", multiple: true } } });
+const { values } = parseArgs({
+  options: {
+    namespace: { type: "string" },
+    confirmed: { type: "string", multiple: true },
+    later: { type: "boolean" },
+    leads: { type: "boolean" },
+    verifications: { type: "string", multiple: true },
+  },
+});
 const namespace = values.namespace ?? null;
 const confirmed: Record<string, Cause> = Object.fromEntries(
   (values.confirmed ?? []).map((entry) => entry.split("=") as [string, Cause]),
@@ -23,12 +32,15 @@ const stored = await fetchObject("CsCostSnapshot", snapshotId);
 if (stored === null) throw new Error(`Snapshot ${snapshotId} does not exist.`);
 const storedLines = await searchObjects("CsCostLine", "snapshotId", snapshotId);
 
-const expected = snapshotRecords(expectedSnapshot(confirmed, namespace), {
+const expected = snapshotRecords(
+  expectedSnapshot(confirmed, namespace, { later: values.later === true, leads: values.leads === true, verificationFiles: values.verifications ?? [] }),
+  {
   expansionId,
   evidenceRevision: Number(expansion.evidenceRevision),
-  rulesVersion: String(stored.rulesVersion),
-  createdAt: String(stored.createdAt),
-});
+    rulesVersion: String(stored.rulesVersion),
+    createdAt: String(stored.createdAt),
+  },
+);
 
 const text = (value: unknown): string =>
   value === undefined || value === null || (Array.isArray(value) && value.length === 0)
@@ -43,7 +55,18 @@ const differences: string[] = [];
 if (market(stored.marketIndicatorsJson) !== market(expected.snapshot.marketIndicatorsJson)) {
   differences.push(`snapshot.marketIndicatorsJson differs:\n    Foundry  ${text(stored.marketIndicatorsJson)}\n    expected ${expected.snapshot.marketIndicatorsJson}`);
 }
-for (const key of ["snapshotId", "evidenceRevision", "marketDataAsOf"] as const) {
+// purchasesJson and incidentsJson exist from function 0.1.1 on.
+const keys = ["snapshotId", "evidenceRevision", "marketDataAsOf", ...(stored.purchasesJson === undefined ? [] : ["purchasesJson", "incidentsJson"] as const)] as const;
+// Snapshots written before function 0.1.4 list evidence IDs inside a finding in the Ontology's order.
+const sortIds = (json: unknown): string =>
+  JSON.stringify(
+    (JSON.parse(String(json)) as { findings?: { evidenceIds: string[] }[] }[]).map((entry) => ({
+      ...entry,
+      ...(entry.findings === undefined ? {} : { findings: entry.findings.map((f) => ({ ...f, evidenceIds: [...f.evidenceIds].sort() })) }),
+    })),
+  );
+for (const key of keys) {
+  if (key === "purchasesJson" && sortIds(stored[key]) === sortIds(expected.snapshot[key])) continue;
   if (text(stored[key]) !== text(expected.snapshot[key])) differences.push(`snapshot.${key}: Foundry ${text(stored[key])}, expected ${text(expected.snapshot[key])}`);
 }
 if (storedLines.length !== expected.lines.length) differences.push(`lines: Foundry ${storedLines.length}, expected ${expected.lines.length}`);

@@ -12,23 +12,24 @@ import { parseArgs } from "node:util";
 import { EVIDENCE_KINDS, parseEvidenceRows, type EvidenceKind } from "@clearspend/domain";
 import { readCsv } from "./lib/csv.js";
 import { applyAction, fetchObject } from "./lib/foundry.js";
-import { KIND_FILES } from "./lib/kinds.js";
+import { KIND_FILES, LATER_FILES } from "./lib/kinds.js";
 import { namespaceExpansion, namespaceRow } from "./lib/namespace.js";
 import { FIXTURE_DIR } from "./lib/paths.js";
 
 const DEMO_EXPANSION = "EXP-ANDROY-2026";
 export const IMPORT_ACTION = "cs-import-evidence-batch";
 
-const { values } = parseArgs({ options: { namespace: { type: "string" }, kind: { type: "string" } } });
+const { values } = parseArgs({ options: { namespace: { type: "string" }, kind: { type: "string" }, later: { type: "boolean" } } });
 const namespace = values.namespace ?? null;
 if (values.kind !== undefined && !(EVIDENCE_KINDS as readonly string[]).includes(values.kind)) {
   throw new Error(`--kind must be one of ${EVIDENCE_KINDS.join(", ")}.`);
 }
 const kinds: readonly EvidenceKind[] = values.kind === undefined ? EVIDENCE_KINDS : [values.kind as EvidenceKind];
 const expansionId = namespaceExpansion(DEMO_EXPANSION, namespace);
+// --later applies only the later batches of scenario 5. Without it, the main files in the D4 order.
+const batches = values.later === true ? LATER_FILES : kinds.map((kind) => ({ kind, file: KIND_FILES[kind].file }));
 
-for (const kind of kinds) {
-  const { file } = KIND_FILES[kind];
+for (const { kind, file } of batches) {
   const bytes = readFileSync(join(FIXTURE_DIR, file));
   const raw: unknown[] = file.endsWith(".json") ? (JSON.parse(bytes.toString("utf-8")) as unknown[]) : readCsv(join(FIXTURE_DIR, file));
   const rows = raw.map((row) => namespaceRow(row as Record<string, unknown>, namespace));

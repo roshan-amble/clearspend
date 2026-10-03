@@ -1,0 +1,6 @@
+source_system,verification_id,supplier_id,ration_version,visited_at,verifier,result,moisture_permille,confirmed_capacity_kg_per_month,notes
+mwi/harbor-field,FV-SUP-A-2026-02,SUP-A,1,2026-02-05T08:00:00Z,field-verifier,PASS,123,399677,Current maize supplier. Storage and packaging checked.
+mwi/harbor-field,FV-SUP-B-2026-02,SUP-B,1,2026-02-10T08:00:00Z,field-verifier,PASS,111,129974,Current beans supplier. Storage and packaging checked.
+mwi/harbor-field,FV-SUP-C-2026-02,SUP-C,1,2026-02-18T08:00:00Z,field-verifier,PASS,,50965,Current oil supplier. Storage and packaging checked.
+mwi/harbor-field,FV-SUP-D-2026-02,SUP-D,1,2026-02-15T08:00:00Z,field-verifier,PASS,81,86832,Current csb supplier. Storage and packaging checked.
+mwi/harbor-field,FV-SUP-E-2026-02,SUP-E,1,2026-02-24T08:00:00Z,field-verifier,PASS,123,102833,Current rice supplier. Storage and packaging checked.

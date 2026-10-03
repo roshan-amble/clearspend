@@ -1,0 +1,6 @@
+expansion_id,commodity,unit,quantity_per_meal,max_moisture_permille,planned_per_month,market_volume_estimate_per_month,market_volume_label,market_series_local,market_series_import
+EXP-GTM-2026,RICE,g,120,140,131040000,4175240801,synthetic,Rice (local),Rice (imported)
+EXP-GTM-2026,BEANS,g,50,130,54600000,2259089953,synthetic,Beans (local),Beans (imported)
+EXP-GTM-2026,OIL,ml,10,,10920000,277142755,synthetic,Vegetable oil (local),Vegetable oil (imported)
+EXP-GTM-2026,MAIZE,g,60,135,43680000,1665150616,synthetic,Maize meal (local),Maize meal (imported)
+EXP-GTM-2026,MILK,g,15,50,10920000,232082601,synthetic,Milk powder (local),Milk powder (imported)

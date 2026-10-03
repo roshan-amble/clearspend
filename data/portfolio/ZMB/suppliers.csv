@@ -1,0 +1,6 @@
+source_system,supplier_id,name,route,country
+zmb/harbor-erp,SUP-A,Western Grain Cooperative (fictional),IMPORT,ZM
+zmb/harbor-erp,SUP-B,Western Trading Co. (fictional),IMPORT,ZM
+zmb/harbor-erp,SUP-C,Western Trading Cooperative (fictional),IMPORT,ZM
+zmb/harbor-erp,SUP-D,Western Grain Co. (fictional),IMPORT,ZM
+zmb/harbor-erp,SUP-E,Western Supply Traders (fictional),LOCAL,ZM

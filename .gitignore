@@ -8,3 +8,9 @@ dist/
 
 # Local type-check helper for clearspend-functions (scripts/functions-harness.sh)
 .functions-harness/
+
+# Public app settings only: a client ID and URLs, never a token (D9).
+!apps/web/.env.development
+
+# Public app settings of the supplier site: a client ID and URLs, never a token (D9).
+!apps/supplier/.env.development

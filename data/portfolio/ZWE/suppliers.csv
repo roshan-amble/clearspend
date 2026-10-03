@@ -1,0 +1,6 @@
+source_system,supplier_id,name,route,country
+zwe/harbor-erp,SUP-A,Masvingo Mills Ltd (fictional),IMPORT,ZW
+zwe/harbor-erp,SUP-B,Masvingo Trading Ltd (fictional),LOCAL,ZW
+zwe/harbor-erp,SUP-C,Masvingo Trading Co. (fictional),IMPORT,ZW
+zwe/harbor-erp,SUP-D,Masvingo Trading Cooperative (fictional),IMPORT,ZW
+zwe/harbor-erp,SUP-E,Masvingo Foods Traders (fictional),IMPORT,ZW

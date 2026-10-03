@@ -1,0 +1,8 @@
+expansion_id,commodity,unit,quantity_per_meal,max_moisture_permille,planned_per_month,market_volume_estimate_per_month,market_volume_label,market_series_local,market_series_import
+EXP-BFA-2026,SORGHUM,g,150,130,94900050,3797803588,synthetic,Sorghum (local),Sorghum (imported)
+EXP-BFA-2026,BEANS,g,40,130,25306680,512430920,synthetic,Beans (local),Beans (imported)
+EXP-BFA-2026,OIL,ml,10,,14235005,619450048,synthetic,Vegetable oil (local),Vegetable oil (imported)
+EXP-BFA-2026,RICE,g,120,140,75920040,2755452443,synthetic,Rice (local),Rice (imported)
+EXP-BFA-2026,FISH,g,15,150,9490005,374152633,synthetic,Dried fish (local),Dried fish (imported)
+EXP-BFA-2026,MILLET,g,100,130,31633300,1427158375,synthetic,Millet (local),Millet (imported)
+EXP-BFA-2026,CSB,g,30,100,9489990,453193290,synthetic,Super Cereal (local),Super Cereal (imported)

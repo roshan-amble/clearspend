@@ -1,0 +1,12 @@
+[
+  {
+    "source_system": "nga/harbor-leads",
+    "supplier_id": "SUP-L1",
+    "commodity": "FISH",
+    "language": "en",
+    "quoted_price_cents_per_kg": 382,
+    "claimed_capacity_kg_per_month": 21450,
+    "submitted_at": "2026-09-09T08:00:00Z",
+    "text": "Unity Supply Co. (fictional). Fish from Borno. Price: 3.82 USD per kg, delivered to the program depot. Capacity: 21,450 kg a month. Quality checked at loading."
+  }
+]

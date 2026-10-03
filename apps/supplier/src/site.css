@@ -1,0 +1,19 @@
+/* The supplier site's form controls, on the tokens of the main app's theme. */
+input,
+select,
+textarea {
+  font: inherit;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line-strong, var(--line));
+  border-radius: 10px;
+  padding: 9px 11px;
+  width: 100%;
+  box-sizing: border-box;
+}
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--brand-2);
+  outline-offset: 1px;
+}

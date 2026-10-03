@@ -1,0 +1,6 @@
+expansion_id,commodity,unit,quantity_per_meal,max_moisture_permille,planned_per_month,market_volume_estimate_per_month,market_volume_label,market_series_local,market_series_import
+EXP-MOZ-2026,MAIZE,g,150,135,134550000,3967540509,synthetic,Maize meal (local),Maize meal (imported)
+EXP-MOZ-2026,BEANS,g,40,130,47840000,2674310913,synthetic,Beans (local),Beans (imported)
+EXP-MOZ-2026,OIL,ml,10,,13455000,344224581,synthetic,Vegetable oil (local),Vegetable oil (imported)
+EXP-MOZ-2026,CSB,g,80,100,23920000,971853808,synthetic,Super Cereal (local),Super Cereal (imported)
+EXP-MOZ-2026,RICE,g,120,140,35880000,1035963378,synthetic,Rice (local),Rice (imported)

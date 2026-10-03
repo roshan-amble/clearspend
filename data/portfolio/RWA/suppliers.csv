@@ -1,0 +1,6 @@
+source_system,supplier_id,name,route,country
+rwa/harbor-erp,SUP-A,Eastern Foods Cooperative (fictional),LOCAL,RW
+rwa/harbor-erp,SUP-B,Eastern Mills Ltd (fictional),LOCAL,RW
+rwa/harbor-erp,SUP-C,Eastern Mills Cooperative (fictional),LOCAL,RW
+rwa/harbor-erp,SUP-D,Eastern Trading Traders (fictional),LOCAL,RW
+rwa/harbor-erp,SUP-E,Eastern Commodities Traders (fictional),IMPORT,RW

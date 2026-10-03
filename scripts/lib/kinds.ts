@@ -1,5 +1,11 @@
 import type { EvidenceKind } from "@clearspend/domain";
 
+/** Later evidence batches (scenario 5), applied after the main files. See data/fixtures/later/README.md. */
+export const LATER_FILES: readonly { readonly kind: EvidenceKind; readonly file: string }[] = [
+  { kind: "payments", file: "later/payments-replay.csv" },
+  { kind: "deliveries", file: "later/deliveries-correction.csv" },
+];
+
 /** The fixture file and the Cs object type for each import kind (D4). */
 export const KIND_FILES: Readonly<Record<EvidenceKind, { readonly file: string; readonly objectType: string }>> = {
   expansion: { file: "expansion.csv", objectType: "CsExpansion" },

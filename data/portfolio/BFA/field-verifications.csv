@@ -1,0 +1,8 @@
+source_system,verification_id,supplier_id,ration_version,visited_at,verifier,result,moisture_permille,confirmed_capacity_kg_per_month,notes
+bfa/harbor-field,FV-SUP-A-2026-02,SUP-A,1,2026-02-21T08:00:00Z,field-verifier,PASS,113,134916,Current sorghum supplier. Storage and packaging checked.
+bfa/harbor-field,FV-SUP-B-2026-02,SUP-B,1,2026-02-22T08:00:00Z,field-verifier,PASS,122,34268,Current beans supplier. Storage and packaging checked.
+bfa/harbor-field,FV-SUP-C-2026-02,SUP-C,1,2026-02-05T08:00:00Z,field-verifier,PASS,,30790,Current oil supplier. Storage and packaging checked.
+bfa/harbor-field,FV-SUP-D-2026-02,SUP-D,1,2026-02-03T08:00:00Z,field-verifier,PASS,124,131590,Current rice supplier. Storage and packaging checked.
+bfa/harbor-field,FV-SUP-E-2026-02,SUP-E,1,2026-02-21T08:00:00Z,field-verifier,PASS,140,20394,Current fish supplier. Storage and packaging checked.
+bfa/harbor-field,FV-SUP-F-2026-02,SUP-F,1,2026-02-14T08:00:00Z,field-verifier,PASS,112,77230,Current millet supplier. Storage and packaging checked.
+bfa/harbor-field,FV-SUP-G-2026-02,SUP-G,1,2026-02-06T08:00:00Z,field-verifier,PASS,89,14644,Current csb supplier. Storage and packaging checked.

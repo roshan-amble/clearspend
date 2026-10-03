@@ -1,0 +1,6 @@
+source_system,supplier_id,name,route,country
+cod/harbor-erp,SUP-A,Kasaï Mills Coopérative (fictional),LOCAL,CD
+cod/harbor-erp,SUP-B,Kasaï Agro Négoce (fictional),LOCAL,CD
+cod/harbor-erp,SUP-C,Kasaï Agro Coopérative (fictional),LOCAL,CD
+cod/harbor-erp,SUP-D,Kasaï Trading SA (fictional),IMPORT,CD
+cod/harbor-erp,SUP-E,Kasaï Grain Négoce (fictional),LOCAL,CD

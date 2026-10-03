@@ -171,6 +171,18 @@ counters (pass: 1 success and 1 `STALE_COMMAND` or conflict), then a retry with 
 - Decided (Roshan, 2026-09-29): the function reads `actorUserId` from the platform with
   `Admin.Users.getCurrent(client)`. The caller cannot send it. If the platform denies that call, the fallback is a
   "current user" Action parameter, after a test proves that an API caller cannot override it.
+- Result (2026-09-30): the platform denies it under the app's sign-in (HTTP 403). So `cs-confirm-incident-cause`
+  uses the fallback from function 0.1.2: an `actorUserId` parameter, and a submission criterion that it equals the
+  current user. The import Action keeps the platform call, because only the script applies it, with a full token.
+- Override test (`npm run test:actor -- --namespace t1`, 2026-09-30): the first 3 runs reported a forged actor as
+  APPLIED. That was a bug in Claude's REST helper: Foundry refuses a request that fails submission criteria with
+  HTTP 200 and `validation.result` INVALID, and the helper treated every HTTP 200 as success. `VALIDATE_ONLY` showed
+  INVALID with Roshan's message, and `t1` holds 0 decisions by another actor ID. The criterion worked from the start.
+- Changed (Roshan, 2026-09-30, from function 0.2.2): the app requests `api:admin-read` (D9), so every decision and AI
+  function calls `Users.getCurrent` and refuses an `actorUserId` that is not the signed-in user ("You can only act
+  as yourself."). The parameter stays, because the request digest covers it. Reason: a submission criterion must
+  be set by hand in Ontology Manager for each Action, and Palantir MCP cannot write one. The criterion on
+  `cs-confirm-incident-cause` stays as a second check.
 
 ## Help received
 

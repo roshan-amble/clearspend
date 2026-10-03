@@ -1,0 +1,7 @@
+expansion_id,commodity,unit,quantity_per_meal,max_moisture_permille,planned_per_month,market_volume_estimate_per_month,market_volume_label,market_series_local,market_series_import
+EXP-LAO-2026,RICE,g,150,140,93600000,2813701386,synthetic,Rice (local),Rice (imported)
+EXP-LAO-2026,LENTILS,g,40,130,18720000,854378404,synthetic,Lentils (local),Lentils (imported)
+EXP-LAO-2026,OIL,ml,10,,5460000,319787655,synthetic,Vegetable oil (local),Vegetable oil (imported)
+EXP-LAO-2026,CSB,g,60,100,9360000,500000979,synthetic,Super Cereal (local),Super Cereal (imported)
+EXP-LAO-2026,MILK,g,10,50,1560000,36937912,synthetic,Milk powder (local),Milk powder (imported)
+EXP-LAO-2026,FISH,g,15,150,2340000,65170248,synthetic,Dried fish (local),Dried fish (imported)

@@ -1,0 +1,17 @@
+[
+  {
+    "source_system": "npl/harbor-erp",
+    "incident_id": "INC-01",
+    "order_id": "PO-004",
+    "reported_at": "2026-06-14T10:00:00Z",
+    "affected_quantity_kg": 135200,
+    "documents": [
+      {
+        "document_id": "DOC-INC-01-LAB",
+        "author_role": "receiving_lab",
+        "recorded_at": "2026-06-14T09:30:00Z",
+        "text": "Receipt test for PO-004: moisture 17% against a maximum of 14%. The lot is rejected and returned to the supplier."
+      }
+    ]
+  }
+]

@@ -1,0 +1,21 @@
+source_system,supplier_id,name,route,country
+mdg-androy/harbor-leads,SUP-L1,Cooperative Tsimoka Riz (fictional),LOCAL,MG
+mdg-androy/harbor-leads,SUP-L2,Androy Grain Supply (fictional),LOCAL,MG
+mdg-androy/harbor-leads,SUP-L3,Moulin Fanantenana (fictional),LOCAL,MG
+mdg-androy/harbor-leads,SUP-L4,Sud Harvest Traders (fictional),LOCAL,MG
+mdg-androy/harbor-leads,SUP-L5,Rice supplier (fictional),LOCAL,MG
+mdg-androy/harbor-leads,SUP-L6,Grand Sud Agro Holdings (fictional),LOCAL,MG
+mdg-androy/harbor-leads,SUP-L7,Tsaramaso Androy (fictif),LOCAL,MG
+mdg-androy/harbor-leads,SUP-L8,South Pulses Trading (fictional),LOCAL,MG
+mdg-androy/harbor-leads,SUP-L9,Coopérative Mahafaly (fictif),LOCAL,MG
+mdg-androy/harbor-leads,SUP-L10,Huilerie du Sud (fictif),LOCAL,MG
+mdg-androy/harbor-leads,SUP-L11,Indian Ocean Oils (fictional),LOCAL,MG
+mdg-androy/harbor-leads,SUP-L12,Nutrition Imports SA (fictional),IMPORT,MG
+mdg-androy/harbor-leads,SUP-L13,Farine Enrichie Madagasikara (fictif),LOCAL,MG
+mdg-androy/harbor-leads,SUP-I1,Indian Ocean Grain Traders (fictional),IMPORT,ZA
+mdg-androy/harbor-leads,SUP-I2,Comptoir d'Importation de Toliara (fictif),IMPORT,MG
+mdg-androy/harbor-leads,SUP-I3,Tanzania Pulses Corridor (fictional),IMPORT,TZ
+mdg-androy/harbor-leads,SUP-I4,Ethiopian Bean Exporters (fictional),IMPORT,ET
+mdg-androy/harbor-leads,SUP-I5,Durban Edible Oils (fictional),IMPORT,ZA
+mdg-androy/harbor-leads,SUP-I6,Mombasa Oil Refiners (fictional),IMPORT,KE
+mdg-androy/harbor-leads,SUP-I7,Southern Africa Fortified Foods (fictional),IMPORT,ZA

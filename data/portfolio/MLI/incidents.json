@@ -1,0 +1,23 @@
+[
+  {
+    "source_system": "mli/harbor-erp",
+    "incident_id": "INC-01",
+    "order_id": "PO-021",
+    "reported_at": "2026-05-22T08:00:00Z",
+    "affected_quantity_kg": 25789,
+    "documents": [
+      {
+        "document_id": "DOC-INC-01-WAREHOUSE",
+        "author_role": "warehouse_manager",
+        "recorded_at": "2026-05-20T08:00:00Z",
+        "text": "Bags from PO-021 arrived damp at the school cluster warehouse in Mopti, and many bags were torn. About 25,789 kg cannot be used. In my view the supplier's packaging was not fit for the season."
+      },
+      {
+        "document_id": "DOC-INC-01-TRANSPORT",
+        "author_role": "transport_contractor",
+        "recorded_at": "2026-05-19T08:00:00Z",
+        "text": "The program truck loaded PO-021 at the depot on 2026-05-14, after the handover. Heavy rain closed the road for 3 days and the truck waited uncovered. It reached the school cluster warehouse on 2026-05-18."
+      }
+    ]
+  }
+]

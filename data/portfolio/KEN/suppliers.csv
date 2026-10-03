@@ -1,0 +1,8 @@
+source_system,supplier_id,name,route,country
+ken/harbor-erp,SUP-A,Turkana Supply Cooperative (fictional),IMPORT,KE
+ken/harbor-erp,SUP-B,Turkana Produce Traders (fictional),IMPORT,KE
+ken/harbor-erp,SUP-C,Turkana Mills Cooperative (fictional),LOCAL,KE
+ken/harbor-erp,SUP-D,Turkana Pulses Co. (fictional),LOCAL,KE
+ken/harbor-erp,SUP-E,Turkana Commodities Ltd (fictional),IMPORT,KE
+ken/harbor-leads,SUP-L1,New Foods Cooperative (fictional),LOCAL,KE
+ken/harbor-leads,SUP-L2,New Produce Cooperative (fictional),LOCAL,KE

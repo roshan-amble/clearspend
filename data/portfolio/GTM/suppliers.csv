@@ -1,0 +1,7 @@
+source_system,supplier_id,name,route,country
+gtm/harbor-erp,SUP-A,Alta Verapaz Grain Comercial (fictional),LOCAL,GT
+gtm/harbor-erp,SUP-B,Alta Verapaz Harvest S.A. (fictional),IMPORT,GT
+gtm/harbor-erp,SUP-C,Alta Verapaz Agro Cooperativa (fictional),LOCAL,GT
+gtm/harbor-erp,SUP-D,Alta Verapaz Supply S.A. (fictional),IMPORT,GT
+gtm/harbor-erp,SUP-E,Alta Verapaz Produce Cooperativa (fictional),IMPORT,GT
+gtm/harbor-leads,SUP-L1,Sunrise Commodities S.A. (fictional),LOCAL,GT

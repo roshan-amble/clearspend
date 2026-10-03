@@ -1,0 +1,12 @@
+[
+  {
+    "source_system": "gtm/harbor-leads",
+    "supplier_id": "SUP-L1",
+    "commodity": "BEANS",
+    "language": "es",
+    "quoted_price_cents_per_kg": 96,
+    "claimed_capacity_kg_per_month": 76440,
+    "submitted_at": "2026-09-08T08:00:00Z",
+    "text": "Sunrise Commodities S.A. (ficticio). Beans de Alta Verapaz. Precio: 0.96 USD por kg, entregado en la bodega del programa. Capacidad: 76,440 kg al mes."
+  }
+]

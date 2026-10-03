@@ -93,6 +93,30 @@ describe("buildSnapshot on the story fixtures", () => {
     expect(records.snapshot.snapshotId).toBe("EXP-ANDROY-2026@7");
     // 4.4 cents for each meal of 100 g is 11/250 of a cent for each gram.
     expect(rice?.nominalExact).toBe("11/250");
+    // Unconfirmed INC-A4 makes the supplier view a range: 5.5 to 5.72 cents for each meal. The route view is 5.72.
+    expect(JSON.parse(rice?.perMealJson ?? "{}")).toEqual({
+      quantityPerMeal: 100,
+      nominal: "22/5",
+      supplierLow: "11/2",
+      supplierHigh: "143/25",
+      routeLow: "143/25",
+      routeHigh: "143/25",
+      quoted: null,
+      // 100 cents divided by the cents for 1 meal: 5.5 to 5.72 cents gives 17.5 to 18.2 meals for 1 dollar.
+      mealsPerDollar: {
+        nominal: "250/11",
+        supplierLow: "2500/143",
+        supplierHigh: "200/11",
+        routeLow: "2500/143",
+        routeHigh: "2500/143",
+        quoted: null,
+      },
+    });
+    expect(JSON.parse(records.snapshot.purchasesJson)).toHaveLength(11);
+    expect(JSON.parse(records.snapshot.incidentsJson).map((incident: { status: string }) => incident.status)).toEqual([
+      "RULE_CLASSIFIED",
+      "UNCONFIRMED",
+    ]);
     expect(parseExactText(rice?.nominalExact ?? "")).toEqual(frac(11n, 250n));
   });
 
@@ -105,3 +129,57 @@ describe("buildSnapshot on the story fixtures", () => {
 });
 
 const META = { expansionId: "EXP-ANDROY-2026", evidenceRevision: 1, rulesVersion: "test", createdAt: "2026-09-29T00:00:00Z" };
+
+describe("scenario 5 later batches (data/fixtures/later)", () => {
+  const before = expectedSnapshot({});
+  const after = expectedSnapshot({}, null, { later: true });
+  const po = (snapshot: typeof before, id: string) => snapshot.purchases.find((purchase) => purchase.orderLogicalId === `harbor-erp:${id}`)?.result;
+
+  it("changes no cost number: the replay adds nothing, and PO-A5 stays outside every total", () => {
+    const numbers = (snapshot: typeof before) =>
+      snapshot.lines.map(({ line }) => ({ ...comparable(line), excluded: line.excluded.map((entry) => entry.orderId) }));
+
+    expect(numbers(after)).toEqual(numbers(before));
+    // Only PO-A5's reported status changes, from INCOMPLETE to UNSUPPORTED (2 payments).
+    expect(after.lines.find((entry) => entry.commodity === "RICE")?.line.excluded).toEqual([{ orderId: "harbor-erp:PO-A5", status: "UNSUPPORTED" }]);
+  });
+
+  it("keeps 2 payments with the same amount apart, and counts the corrected delivery once", () => {
+    const codes = po(after, "PO-A5")?.findings.map((finding) => finding.code);
+
+    expect(po(before, "PO-A5")?.status).toBe("INCOMPLETE");
+    expect(po(after, "PO-A5")?.status).toBe("UNSUPPORTED");
+    expect(codes).toContain("MISSING_INVOICE");
+    expect(codes).not.toContain("DELIVERY_EXCESS");
+  });
+});
+
+describe("leads and eligibility (Phase 4, scenario 7 and 9)", () => {
+  const initial = expectedSnapshot({}, null, { leads: true, verificationFiles: ["field-verifications-initial.csv"] });
+  const later = expectedSnapshot({}, null, {
+    leads: true,
+    verificationFiles: ["field-verifications-initial.csv", "field-verifications-later.csv"],
+  });
+  const lineOf = (snapshot: typeof initial, supplier: string) => snapshot.lines.find((entry) => entry.supplierLogicalId.endsWith(`:${supplier}`));
+  const perMeal = (snapshot: typeof initial, supplier: string) => JSON.parse(snapshotRecords(snapshot, META).lines.find((line) => line.supplierLogicalId.endsWith(`:${supplier}`))?.perMealJson ?? "{}");
+
+  it("shows each lead with its quote, 0 batches, and unknown failure risk, never 0%", () => {
+    const leads = initial.lines.filter((entry) => entry.quotedCentsPer1000 !== null);
+
+    expect(leads.map((entry) => entry.supplierLogicalId.split(":")[1])).toEqual(["SUP-L1", "SUP-L2", "SUP-L3", "SUP-L4", "SUP-L5", "SUP-L6"]);
+    expect(leads.every((entry) => entry.line.batches === 0 && entry.line.failureRisk === "UNKNOWN" && entry.line.nominal === null)).toBe(true);
+  });
+
+  it("keeps the quote apart from every paid cost: SUP-L1 quotes 5.1 cents for each meal", () => {
+    const l1 = perMeal(initial, "SUP-L1");
+
+    expect(formatFixed(parseExactText(l1.quoted), 1)).toBe("5.1");
+    expect([l1.nominal, l1.supplierLow, l1.routeLow]).toEqual([null, null, null]);
+  });
+
+  it("makes SUP-A eligible from its initial visit, and SUP-L1 eligible and SUP-L4 not after the later visits", () => {
+    expect(lineOf(initial, "SUP-A")?.eligibility).toBe("VERIFIED_PASS");
+    expect([lineOf(initial, "SUP-L1")?.eligibility, lineOf(initial, "SUP-L4")?.eligibility]).toEqual(["LEAD", "LEAD"]);
+    expect([lineOf(later, "SUP-L1")?.eligibility, lineOf(later, "SUP-L4")?.eligibility]).toEqual(["VERIFIED_PASS", "VERIFIED_FAIL"]);
+  });
+});

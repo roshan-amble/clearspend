@@ -1,0 +1,22 @@
+[
+  {
+    "source_system": "mwi/harbor-leads",
+    "supplier_id": "SUP-L1",
+    "commodity": "MAIZE",
+    "language": "en",
+    "quoted_price_cents_per_kg": 33,
+    "claimed_capacity_kg_per_month": 436800,
+    "submitted_at": "2026-09-12T08:00:00Z",
+    "text": "Green Produce Traders (fictional). Maize from Dedza. Price: 0.33 USD per kg, delivered to the program depot. Capacity: 436,800 kg a month. Quality checked at loading."
+  },
+  {
+    "source_system": "mwi/harbor-leads",
+    "supplier_id": "SUP-L2",
+    "commodity": "BEANS",
+    "language": "en",
+    "quoted_price_cents_per_kg": 87,
+    "claimed_capacity_kg_per_month": 46592,
+    "submitted_at": "2026-09-04T08:00:00Z",
+    "text": "Green Foods Traders (fictional). Beans from Dedza. Price: 0.87 USD per kg, delivered to the program depot. Capacity: 46,592 kg a month. Quality checked at loading."
+  }
+]

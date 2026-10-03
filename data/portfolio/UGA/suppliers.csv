@@ -1,0 +1,7 @@
+source_system,supplier_id,name,route,country
+uga/harbor-erp,SUP-A,Karamoja Commodities Traders (fictional),IMPORT,UG
+uga/harbor-erp,SUP-B,Karamoja Pulses Traders (fictional),LOCAL,UG
+uga/harbor-erp,SUP-C,Karamoja Foods Cooperative (fictional),LOCAL,UG
+uga/harbor-erp,SUP-D,Karamoja Mills Traders (fictional),LOCAL,UG
+uga/harbor-erp,SUP-E,Karamoja Supply Co. (fictional),IMPORT,UG
+uga/harbor-leads,SUP-L1,Green Mills Traders (fictional),LOCAL,UG
