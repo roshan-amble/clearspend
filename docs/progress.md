@@ -1,6 +1,9 @@
 # Progress
 
-Updated: 2026-09-30 (UI rebuild). The onsite is on 2026-10-05.
+Updated: 2026-10-07. The onsite was on 2026-10-05, and Roshan has submitted the Build with AIP video.
+
+**This repository is not the latest version.** Roshan consolidated the project locally on another device, and his
+Playwright end-to-end tests stay there (step 32).
 
 ## Where the project is
 
@@ -9,10 +12,11 @@ Updated: 2026-09-30 (UI rebuild). The onsite is on 2026-10-05.
 | Phase 0: access, smoke test, region, platform facts | Done. The smoke test passed on 2026-09-27. Region: Androy. |
 | Design records | D1, D2, D3, D4, D5, and D11 approved. D2 decision 10 added. D11 has 2 data-driven amendments for Roshan to see. D6 and D9 approved. D3, D4, D5 amended. D7, D8, D10 not started. |
 | Phase 1: pure domain core and fixtures | Done. `packages/domain` and `data/fixtures`: 74 tests pass, type check clean, 2 mutation checks done. |
-| Phase 2: Ontology and a connected screen | Exit condition met on 2026-09-30: Roshan confirmed INC-A4 from Screen B in the browser, with real persistence and a verified revision guard. Next: Checkpoint C. |
+| Phase 2: Ontology and a connected screen | Exit condition met on 2026-09-30: Roshan confirmed INC-A4 from Screen B in the browser, with real persistence and a verified revision guard. Checkpoint C's trace: Roshan traced each path himself (step 32). |
 | Phase 3: AI boundary | Deployed (2026-09-30). All 4 jobs run on GPT-4o from scripts and the browser. `eval:ai`: 20 automatic checks pass. Waiting: Roshan's manual review in `docs/ai-evaluation.md` (Checkpoint D). |
 | Phase 4: field visits, verification, sourcing decision, outreach, Screens A and C | Deployed (functions 0.2.3, SDK 0.4.0). Demo namespace `demo` imported and verified (revision 12, MATCH). UI rebuilt (UI1 to UI5, step 18), waiting on merge 1 (step 19). |
-| Phase 5 to 6 | Not started |
+| Phase 5: optional extensions | Not recorded here |
+| Phase 6: explanation, recording, and handoff | The full video is submitted (Roshan, 2026-10-07). |
 
 ## Done in Phase 1
 
@@ -267,6 +271,14 @@ All identifiers are in [foundry-resources.md](foundry-resources.md).
     flagged that its price is CIF Toliara, inland transport extra. Madagascar was then reset (clean for the demo).
 31. Next: Roshan runs `docs/demo-script.md` (portfolio flow) in the browser; then Checkpoint D (AI review), Phase 4
     cleanup, and Phase 6.
+32. Done, reported by Roshan on 2026-10-07 (the work is on his other device, not in this repository):
+    - The full Build with AIP video is submitted.
+    - He traced each path himself.
+    - He generated Playwright end-to-end tests. They stay local so the repository download stays small.
+    - He consolidated the project locally. This repository holds the earlier version.
+    - After his 2-hour architectural review, the learning log's AI-generated rows read "AI-generated and reviewed".
+    Not recorded here: Checkpoint D (the manual AI review in `docs/ai-evaluation.md`) and Checkpoint E (1 small
+    change that Roshan makes himself).
 
 ## Open questions
 
